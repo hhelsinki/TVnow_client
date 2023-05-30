@@ -1,0 +1,100 @@
+.home__main { height:85vh;}
+
+.home__header-nav {width:49%;
+    span {left:20px; bottom:1rem;}
+    img {width:30px; right:20px; bottom:1rem;}
+}
+.home__footer-nav {width:33%;
+    img {width:28px; margin-top:.7rem;}
+}
+
+.home__intro-txt { margin-top:2rem;
+    ul {padding-left:0;}
+    li {padding:0 5px;}
+}
+.home__headline-img { width:100%; white-space: nowrap;
+    div { padding:1rem .2rem 1.2rem .2rem;
+      img {width:100px;}
+    }
+    span {left:5px; bottom:0;}  
+}
+.home__box-overlay, .home__box-overlay--cate {opacity:0; display: none;}
+.home__categ { width:100%; white-space: nowrap;}
+.home__categ-div { width:150px; height:85px; margin:0 5px; 
+        &.movies {background:var(--cate-movies);}
+        &.shows {background:var(--cate-shows);}
+        &.action {background:var(--cate-action);}
+        &.romance {background:var(--cate-romance);}
+        &.crime {background:var(--cate-crime);}
+        &.comedy {background:var(--cate-comedy);}
+        &.thriller {background:var(--cate-thriller);}
+        &.fantasy {background:var(--cate-fantasy);}
+        &.lgbtq {background:var(--cate-lgbtq);}
+        &.more {background:var(--cate-more);}
+        p { margin-top:1.8rem;}
+}
+.home__gallery-panel { width:0; height:0; top:40%; z-index:5; border-top:20px solid transparent; border-bottom:20px solid transparent; }
+.home__gallery-panel--right {@extend .home__gallery-panel; border-left:25px solid #7b706c; right:0;}
+.home__gallery-panel--left {@extend .home__gallery-panel; border-right:25px solid #7b706c; left:0;}
+
+
+.home__settings-sidenav { height: 100%; width:100%; position: fixed; z-index: 9; top: 0; right: 0; background-color: #636363; overflow-x: hidden; padding-top: 60px;
+    &.profile {transition:.3s;}
+}
+.home__settings-sidenav .closebtn { position: absolute; top: 0; left: 0;
+}
+.home__settings-header {height:9vh; width:100%;  background:grey;
+    div {
+        &.left {width:20%; padding-top:1rem;}
+        &.right {width:80%; padding-top:1.3rem;}
+    }
+    img {width:30px;}
+}
+.home__settings-main {height:81vh; background:whitesmoke;}
+.home__settings-footer {height:9vh; background:grey;
+    div {width:25%; padding-top:1.2rem;}
+}
+.home__settings { margin-top:2rem;
+    label {margin-left:1.5rem;}
+    div {padding:12px 0;
+        span {margin-left:1rem;}
+        &.left, &.right {width:20%;}
+        &.mid {width:60%; background:wheat;}
+    }
+}
+.home__settings-img {
+    &.left {width:25px;}
+    &.right {width:18px;}
+}
+.home__settings-shadow {box-shadow:black 0px 3px 5px;}
+.home__settings-suggest { width:80%; right:0; z-index:4; background:grey; font-size:.8rem; text-indent:10px;}
+.home__btn-toggle {
+    label {position:absolute; width:58px; height:20px; top:-.4rem; left:.4rem; }
+    input {opacity:0; width:0; height:0;}
+    span { position:absolute; top:0; left:0; bottom:0; right:0; background:grey; transition:.3s; border-radius:30px;
+        &::before {position:absolute; content:''; height:16px; width:16px; left:3px; top:2px; background:white; border-radius:50%; transition:.3s;}
+    }
+    input:checked + span { background:green; }
+    input:checked + span::before {transform: translate(20px);}
+    button {position:absolute; top:-.4rem; left:3rem; border:0; background:green; font-size:.7rem;}
+}
+
+//SD
+@media only screen and (min-width:599px) and (min-height:559px) {
+    .home__intro-txt {margin-bottom:6rem;}
+    .home__headline-img {
+        div {padding: 1rem 0.3rem 1.2rem 0.3rem;} 
+    }
+    .home__adjust-margin {margin-top:6rem;}
+    .home__box-overlay, .home__box-overlay--cate { display: block; width:94px; height:112px; position: absolute; z-index:1; background:#1a1a1a; transition: .3s ease }
+    .home__box-overlay--cate { width:150px; height:85px;}
+    .home__box-overlay:hover{ opacity: .8;}
+    .home__box-overlay--cate:hover {opacity:.6;}
+    .home__box-img { width:100%; height:auto; position:absolute; }
+    .home__box-txt {font-size:.8rem; white-space: pre-line; position:absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color:var(--white);}
+}
+
+//Tablet
+@media only screen and (min-width:599px) and (min-height:719px) {
+}
+

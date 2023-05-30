@@ -1,0 +1,40 @@
+.login__txt-color {color:var(--txt-prim)};
+
+.login__header { height:12vh; @extend .login__txt-color;
+	div {padding:20px 0 0 20px;}
+}
+.login__main {height:70vh; @extend .login__txt-color;}
+.login__footer {height:18vh; width:100%; bottom:0; @extend .login__txt-color;
+	a {color:inherit;}
+	ul {list-style-type: none; padding:0;}
+}
+
+.login__content {max-width:520px;}
+.login__card { @extend .login__content; border-radius:5px; background:var(--content-login); box-shadow:0px 10px 20px -5px  rgba(180, 180, 180, .5); }
+.login__form { padding:0 30px; }
+.login__label { color:var(--whitesmoke); font-weight:bold; padding-top:5px; }
+.login__input { width:100%; max-width:350px; height:50px; box-sizing:border-box; margin:0 auto;}
+.login__input-img {width:30px; bottom:.5rem; right:5%;}
+.login__input-submit { @extend .login__input; background:var(--input-submit); border-radius:5px; font-size:18px; margin-top:20px; }
+.login__trial { background:var(--bg-prim); padding:10px; border-radius:0 0 5px 5px; border-top:1px solid var(--content-login) }
+.login__guest {margin-top:15vh;}
+
+//Tablet
+@media only screen and (min-height:799px) {
+	.login__footer {
+		ul { padding-top: 2rem; }
+	}	
+    .login__label { margin-top:1rem;}
+}
+@media only screen and (min-width:599px) {
+    .login__label { margin-top:1rem;}
+    .login__input-img {right:10%;}
+}
+
+//PC
+@media only screen and (min-width:1279px) and (min-height:719px) {
+	.login__main {height:78vh;}
+	.login__footer { height:10vh;
+        li { display:inline list-item; padding:0 1rem; }
+    }
+}

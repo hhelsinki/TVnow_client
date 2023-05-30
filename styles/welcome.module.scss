@@ -1,0 +1,38 @@
+.wel__header { height:9vh; padding:20px 0 0 20px; background:linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.5), rgba(0,0,0,.01));
+    a {color:var(--white); }
+}
+.wel__main { height:81vh;}
+.wel__footer { height:10vh; width:100%; bottom:0;
+    ul {list-style-type:none; padding:0;}
+}
+
+.wel__btn-login {right:10px;}
+.wel__content {max-width:720px;}
+
+.wel__trial { width:auto; margin:50px auto;
+    h1 { font-size:xxx-large; color:var(--white); }
+    h2 { color:var(--bg-login); }
+    h4 { color:var(--blue); }
+}
+.wel__trial-url { padding:18px 30px; border-radius:5px; background:var(--white); border:1px solid var(--white); font-weight:bold; cursor:pointer; margin-left:10px; margin-right:10px; }
+
+//MEDIA QUERY start with 320px, 640
+
+//Tablet
+@media only screen and (min-width:599px) {
+    .wel__trial {
+        h2 {margin: 0 25px 3rem 25px; }
+    }
+}
+@media only screen and (min-width:599px) and (min-height:799px) {
+    .wel__footer {
+        ul li {padding-bottom:.5rem;}
+    }
+}
+
+//PC
+@media only screen and (min-width:1279px) and (min-height:719px) {
+    .wel__footer { height:3vh;
+        li { display:inline list-item; padding:0 1rem; }
+    }
+}
