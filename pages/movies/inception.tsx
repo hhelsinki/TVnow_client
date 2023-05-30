@@ -1,21 +1,19 @@
-import axios from "axios";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import styled from './show.module.scss';
-import Cookies from "js-cookie";
-import { ContentHeadlineSEO, ContentRelatedSEO, ContentSsSEO } from "@/parts/seo/content";
-import { scrollInvertXrelated, scrollInvertXss, scrollXrelated, scrollXss } from "@/functions/scrollX";
-import LoginSEO from "@/parts/seo/login";
+import { ContentHeadlineSEO, ContentRelatedSEO } from "@/parts/seo/content";
 import HeaderSEO from "@/parts/seo/header";
+import Head from "next/head";
+import styled from '../shows/show.module.scss';
+import LoginSEO from "@/parts/seo/login";
 import FooterSEO from "@/parts/seo/footer";
+import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { API, baseKeyApi } from "@/functions/api";
-//import { query_path } from "@/functions/query";
+import Cookies from "js-cookie";
+import axios from "axios";
+import { scrollInvertXrelated, scrollXrelated } from "@/functions/scrollX";
 
 interface State {
     title: string,
-    season: number,
     poster_mb: string,
     poster_tb: string,
     poster_pc: string,
@@ -26,13 +24,12 @@ interface State {
     country: string
 }
 
-const ThirteenReasonsWhy = () => {
+const Inception = () => {
     const router = useRouter();
     const loginSeo = useSelector((state:any) => state.loginSeo);
     //const query = router.pathname.replace(query_path, '');
     const [values, setValues] = useState<State>({
         title: '',
-        season: 1,
         poster_mb: '',
         poster_tb: '',
         poster_pc: '',
@@ -42,13 +39,12 @@ const ThirteenReasonsWhy = () => {
         starring: '',
         country: ''
     });
-    const [allSSs, setAllSSs] = useState<any>([]);
     const [related, setRelated] = useState<any>([]);
 
     const loadContents = async () => {
         const config = {
             method: 'GET',
-            url: `${API}${router.pathname}-season-1`,
+            url: `${API}${router.pathname}`,
             headers: {
                 api_key: baseKeyApi,
                 user_token: Cookies.get('TVnow_Login_Token')
@@ -57,13 +53,11 @@ const ThirteenReasonsWhy = () => {
         await axios(config)
             .then((res) => {
                 console.log(res.data)
-                const newAllSSs: any = [];
                 const newRelated: any = [];
 
                 setValues({
                     ...values,
                     title: res.data.info.title,
-                    season: res.data.info.season,
                     poster_mb: API + res.data.info.poster_mb,
                     poster_tb: API + res.data.info.poster_pc,
                     poster_pc: API + res.data.info.poster_pc,
@@ -74,38 +68,24 @@ const ThirteenReasonsWhy = () => {
                     country: res.data.info.country,
                 });
 
-                res.data.allSeasons.forEach((item: any, index: number) => newAllSSs.push(item));
-                setAllSSs(newAllSSs);
                 res.data.related.forEach((item: any, index: number) => newRelated.push(item));
                 setRelated(newRelated);
             })
-            .catch((err) => { console.log(err); console.log('err API: shows/query-season-1') })
+            .catch((err) => { console.log(err); console.log('err API: movies/query') })
     }
 
     useEffect(() => {
         loadContents();
 
-        /*let loginToken: any = Cookies.get('TVnow_Login_Token');
-        switch (loginToken) {
-            case null:
-            case undefined:
-            case false:
-                window.location.href = '/';
-                break;
-            default:
-                break;
-        }*/
-
 
         Cookies.set('TVnow oldPath', window.location.pathname, { sameSite: 'strict' });
     }, []);
-
-
+    
     return (
         <>
             <Head>
-                <title>TVnow: 13 Reasons Why</title>
-                <meta name="description" content="Watch 13 Reasons Why Season 1, Watch 13 Reasons Why Season 2, Watch 13 Reasons Why Season 3, Watch 13 Reasons Why Season 4" />
+                <title>TVnow: Inception</title>
+                <meta name="description" content="Watch Inception Movie" />
             </Head>
             <HeaderSEO />
             <main className="main scroll-y">
@@ -122,31 +102,18 @@ const ThirteenReasonsWhy = () => {
                     />
                 </article>
                 <div className="div-content-long div-center padd-default">
-                    <ContentSsSEO
-                        scrollXss={scrollXss}
-                        scrollInvertXss={scrollInvertXss}
-                        allSSs={allSSs.map((el: any, i: number) => {
-                            return <div key={i} className="rel dp-inline-block">
-                                <div className={`${styled['show__hr-overlay']} cursor`}>
-                                    <div className={styled['show__hr-txt']}>{el.season}</div>
-                                </div>
-                                    <img src={"http://localhost:3001" + el.img} />
-                                    <span className="abs">{el.season}</span>
-                            </div>
-                        })}
-                    />
                     <ContentRelatedSEO
                         scrollXrelated={scrollXrelated}
                         scrollInvertXrelated={scrollInvertXrelated}
                         related={related.map((el: any, i: number) => {
                             return <div key={i} className="rel dp-inline-block">
-                               <div className={`${styled['show__hr-overlay']} cursor`}>
+                                <div className={`${styled['show__hr-overlay']} cursor`}>
                                     <div className={styled['show__hr-txt']}>{el.title}</div>
                                 </div>
-                                    <img src={"http://localhost:3001" + el.img} />
-                                    <span className="abs mobile">{el.title.substring(0, 10)}{el.title.length >= 10 && '...'}</span>
-                                    <span className="abs tablet">{el.title.substring(0, 20)}{el.title.length >= 20 && '...'}</span>
-                                    <span className="abs pc">{el.title.substring(0, 25)}{el.title.length >= 25 && '...'}</span>
+                                <img src={"http://localhost:3001" + el.img} />
+                                <span className="abs mobile">{el.title.substring(0, 10)}{el.title.length >= 10 && '...'}</span>
+                                <span className="abs tablet">{el.title.substring(0, 20)}{el.title.length >= 20 && '...'}</span>
+                                <span className="abs pc">{el.title.substring(0, 25)}{el.title.length >= 25 && '...'}</span>
                             </div>
                         })}
                     />
@@ -160,4 +127,4 @@ const ThirteenReasonsWhy = () => {
     );
 }
 
-export default ThirteenReasonsWhy;
+export default Inception;

@@ -23,6 +23,7 @@ const ContentHeadlineSEO = (props:any) => {
                         <div className="tablet">{props.storySubstringTb}{props.storyLength >= 200 && '...'}</div>
                         <div className="pc">{props.storyPc}</div>
                         <img src="../play.png" className='cursor' onClick={()=> dispatch(toggleLogin())}/>
+                        <span onClick={()=> dispatch(toggleLogin())} className='abs cursor' style={{marginTop:'2rem', marginLeft:'.5rem'}}>Play</span>
                     </div>
                 </div>
             </section>
@@ -37,9 +38,9 @@ const ContentSsSEO = (props: any) => {
     return (
         <article data-name='show__season'>
             <h2>All Seasons</h2>
-            <section id='ss_container' onClick={()=> dispatch(toggleLogin())} className="rel" style={{ background: 'grey' }}>
-                <div onClick={props.scrollXss} className={`${styled['show__gallery-panel--right']} abs cursor`}></div>
-                <div onClick={props.scrollInvertXss} className={`${styled['show__gallery-panel--left']} abs cursor`}></div>
+            <section id='ss_container' onClick={()=> dispatch(toggleLogin())} className="rel cursor">
+                <div onClick={props.scrollXss} className={`${styled['show__gallery-panel--right']} abs`}></div>
+                <div onClick={props.scrollInvertXss} className={`${styled['show__gallery-panel--left']} abs`}></div>
                 <div id="ss_scroll" className={`${styled['show__title-img']} scroll-hidden`}>
                     {props.allSSs}
                 </div>
@@ -53,9 +54,9 @@ const ContentRelatedSEO = (props: any) => {
     return (
         <article data-name='show__related'>
             <h2>You May also Like</h2>
-            <section id='related_container' onClick={()=> dispatch(toggleLogin())} className="rel" style={{ background: 'grey' }}>
-                <div onClick={props.scrollXrelated} className={`${styled['show__gallery-panel--right']} abs cursor`}></div>
-                <div onClick={props.scrollInvertXrelated} className={`${styled['show__gallery-panel--left']} abs cursor`}></div>
+            <section id='related_container' onClick={()=> dispatch(toggleLogin())} className="rel cursor">
+                <div onClick={props.scrollXrelated} className={`${styled['show__gallery-panel--right']} abs`}></div>
+                <div onClick={props.scrollInvertXrelated} className={`${styled['show__gallery-panel--left']} abs`}></div>
                 <div id="related_scroll" className={`${styled['show__title-img']} scroll-hidden`}>
                     {props.related}
                 </div>

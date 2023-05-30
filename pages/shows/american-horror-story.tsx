@@ -1,14 +1,17 @@
-import Footer from "@/parts/footer";
-import Header from "@/parts/header";
 import axios from "axios";
 import Head from "next/head";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styled from './show.module.scss';
 import Cookies from "js-cookie";
-import { ContentEp, ContentHeadline, ContentRelated, ContentSs } from "@/parts/seo/content_seo";
-import { scrollInvertXep, scrollInvertXrelated, scrollInvertXss, scrollXep, scrollXrelated, scrollXss } from "@/functions/scrollX";
-import { query_path } from "@/functions/query";
+import { ContentHeadlineSEO, ContentRelatedSEO, ContentSsSEO } from "@/parts/seo/content";
+import { scrollInvertXrelated, scrollInvertXss, scrollXrelated, scrollXss } from "@/functions/scrollX";
+import LoginSEO from "@/parts/seo/login";
+import HeaderSEO from "@/parts/seo/header";
+import FooterSEO from "@/parts/seo/footer";
+import { useSelector } from "react-redux";
+import { API, baseKeyApi } from "@/functions/api";
+//import { query_path } from "@/functions/query";
 
 interface State {
     title: string,
@@ -23,9 +26,10 @@ interface State {
     country: string
 }
 
-const ThirteenReasonsWhySSI = () => {
+const AmericanHorrorStory = () => {
     const router = useRouter();
-    const query = router.pathname.replace(query_path, '');
+    const loginSeo = useSelector((state:any) => state.loginSeo);
+    //const query = router.pathname.replace(query_path, '');
     const [values, setValues] = useState<State>({
         title: '',
         season: 1,
@@ -38,15 +42,21 @@ const ThirteenReasonsWhySSI = () => {
         starring: '',
         country: ''
     });
-    const [allEPs, setAllEPs] = useState<any>([]);
     const [allSSs, setAllSSs] = useState<any>([]);
     const [related, setRelated] = useState<any>([]);
 
     const loadContents = async () => {
-        await axios.get(`http://localhost:3001${router.pathname}`)
+        const config = {
+            method: 'GET',
+            url: `${API}${router.pathname}-season-1`,
+            headers: {
+                api_key: baseKeyApi,
+                user_token: Cookies.get('TVnow_Login_Token')
+            }
+        }
+        await axios(config)
             .then((res) => {
                 console.log(res.data)
-                const newAllEPs: any = [];
                 const newAllSSs: any = [];
                 const newRelated: any = [];
 
@@ -54,29 +64,22 @@ const ThirteenReasonsWhySSI = () => {
                     ...values,
                     title: res.data.info.title,
                     season: res.data.info.season,
-                    poster_mb: 'http://localhost:3001/' + res.data.info.poster_mb,
-                    poster_tb: 'http://localhost:3001/' + res.data.info.poster_pc,
-                    poster_pc: 'http://localhost:3001/' + res.data.info.poster_pc,
-                    story: res.data.info.story, genre:
-                        res.data.info.genre,
+                    poster_mb: API + res.data.info.poster_mb,
+                    poster_tb: API + res.data.info.poster_pc,
+                    poster_pc: API + res.data.info.poster_pc,
+                    story: res.data.info.story, 
+                    genre: res.data.info.genre,
                     year: res.data.info.year,
                     starring: res.data.info.starring,
                     country: res.data.info.country,
                 });
 
-                res.data.allEPs.forEach((item: any, index: number) => newAllEPs.push(item));
-                setAllEPs(newAllEPs);
                 res.data.allSeasons.forEach((item: any, index: number) => newAllSSs.push(item));
                 setAllSSs(newAllSSs);
                 res.data.related.forEach((item: any, index: number) => newRelated.push(item));
                 setRelated(newRelated);
             })
-            .catch((err) => { console.log(err) })
-    }
-    const handleLogin = () => {
-        //if login has cookie
-        //true- redirect to content_?
-        //false - login popup
+            .catch((err) => { console.log(err); console.log('err API: shows/query-season-1') })
     }
 
     useEffect(() => {
@@ -97,16 +100,17 @@ const ThirteenReasonsWhySSI = () => {
         Cookies.set('TVnow oldPath', window.location.pathname, { sameSite: 'strict' });
     }, []);
 
+
     return (
         <>
             <Head>
-                <title>{`TVnow: ${values.title}`}</title>
-                <meta name="description" content={`Watch ${values.title}`}/>
+                <title>TVnow: American Horror Story</title>
+                <meta name="description" content="Watch American Horror Story Season 1, Watch American Horror Story Season 2, Watch American Horror Story Season 3, Watch American Horror Story Season 4" />
             </Head>
-            <Header />
+            <HeaderSEO />
             <main className="main scroll-y">
                 <article data-name='show__headline'>
-                    <ContentHeadline
+                    <ContentHeadlineSEO
                         poster_mb={values.poster_mb}
                         poster_tb={values.poster_tb}
                         poster_pc={values.poster_pc}
@@ -118,54 +122,42 @@ const ThirteenReasonsWhySSI = () => {
                     />
                 </article>
                 <div className="div-content-long div-center padd-default">
-                    <ContentEp
-                        scrollXep={scrollXep}
-                        scrollInvertXep={scrollInvertXep}
-                        allEPs={allEPs.map((el: any, i: number) => {
-                            return <div key={i} className="rel dp-inline-block">
-                                <a href={el.url}><div className={styled['show__hr-overlay']}>
-                                    <div className={styled['show__hr-txt']}>{el.ep}</div>
-                                </div>
-                                    <img src={"http://localhost:3001" + el.img} />
-                                    <span className="abs">{el.ep}</span></a>
-                            </div>
-                        })}
-                    />
-                    <ContentSs
+                    <ContentSsSEO
                         scrollXss={scrollXss}
                         scrollInvertXss={scrollInvertXss}
                         allSSs={allSSs.map((el: any, i: number) => {
                             return <div key={i} className="rel dp-inline-block">
-                                <a href={el.url}><div className={styled['show__hr-overlay']}>
+                                <div className={`${styled['show__hr-overlay']} cursor`}>
                                     <div className={styled['show__hr-txt']}>{el.season}</div>
                                 </div>
                                     <img src={"http://localhost:3001" + el.img} />
-                                    <span className="abs">{el.season}</span></a>
+                                    <span className="abs">{el.season}</span>
                             </div>
                         })}
                     />
-                    <ContentRelated
+                    <ContentRelatedSEO
                         scrollXrelated={scrollXrelated}
                         scrollInvertXrelated={scrollInvertXrelated}
                         related={related.map((el: any, i: number) => {
                             return <div key={i} className="rel dp-inline-block">
-                                <a href={el.url}><div className={styled['show__hr-overlay']}>
+                               <div className={`${styled['show__hr-overlay']} cursor`}>
                                     <div className={styled['show__hr-txt']}>{el.title}</div>
                                 </div>
                                     <img src={"http://localhost:3001" + el.img} />
-                                    <span className="abs mobile">{el.title.substring(0,10)}{el.title.length >= 10 && '...'}</span>
-                                    <span className="abs tablet">{el.title.substring(0,20)}{el.title.length >= 20 && '...'}</span>
-                                    <span className="abs pc">{el.title.substring(0,25)}{el.title.length >= 25 && '...'}</span></a>
+                                    <span className="abs mobile">{el.title.substring(0, 10)}{el.title.length >= 10 && '...'}</span>
+                                    <span className="abs tablet">{el.title.substring(0, 20)}{el.title.length >= 20 && '...'}</span>
+                                    <span className="abs pc">{el.title.substring(0, 25)}{el.title.length >= 25 && '...'}</span>
                             </div>
                         })}
                     />
-                    <a href={`../contents?n=${query}`}><button>Go to watch</button></a>
+                    {/*<a href={`../contents?n=${query}`}><button>Go to watch</button></a>*/}
                 </div>
                 <div className="div-ghost"></div>
+                {loginSeo.enable && <LoginSEO />}
             </main >
-            <Footer />
+            <FooterSEO />
         </>
     );
 }
 
-export default ThirteenReasonsWhySSI;
+export default AmericanHorrorStory;
