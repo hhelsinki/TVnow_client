@@ -21,6 +21,7 @@ const LoginSEO = () => {
         attn: ''
     });
     const [contentType, setContentType] = useState<string>('');
+    //const [contentPath, setContentPath] = useState<string>('');
     let router = useRouter();
     let query = router.pathname.replace(query_path, '');
     //console.log(router.pathname.includes('shows'))
@@ -34,7 +35,7 @@ const LoginSEO = () => {
         }
         const config = {
             method: 'POST',
-            url: `${API}login`,
+            url: `${API}/login`,
             headers: {
                 api_key: baseKeyApi
             },
@@ -46,8 +47,18 @@ const LoginSEO = () => {
                 switch (res.data.status) {
                     case true:
                         setValues({ ...values, attn: '' });
+                        let contentPath:string = '';
+
+                        if (router.pathname.includes('shows')) {
+                            contentPath = 'contents_show';
+                        }
+                        else {
+                            contentPath = 'contents_movie';
+                        }
+                        
                         Cookies.set('TVnow_Login_Token', res.data.data, { sameSite: 'strict' });
-                        router.push(`../content?n=${query}${contentType}`);
+                        router.push(`../${contentPath}?n=${query}${contentType}`);
+                        //console.log(`../${contentPath}?n=${query}${contentType}`);
                         break;
                     case false: default:
                         setValues({ ...values, attn: res.data.msg });
@@ -67,9 +78,17 @@ const LoginSEO = () => {
 
         //Login Logout
         let authToken = Cookies.get('TVnow_Login_Token');
+        let contentPath:string = '';
 
         if (authToken) {
-            router.push(`../content?n=${query}${contentType}`);
+            if (router.pathname.includes('shows')) {
+                contentPath = 'contents_show';
+            }
+            else {
+                contentPath = 'contents_movie';
+            }
+            //console.log(`../${contentPath}?n=${query}${contentType}`);
+            router.push(`../${contentPath}?n=${query}${contentType}`);
         }
 
     }, []);

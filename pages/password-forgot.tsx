@@ -6,6 +6,7 @@ import Styled from 'styled-components'
 import { baseKeyApi } from "@/functions/api";
 import RegisButtonSubmit from "@/common/regis_button_submit";
 import { API } from "@/functions/api";
+import Loading from "@/common/Loading";
 
 const Main = Styled.div`
     height: 77vh; overflow-y: hidden;
@@ -17,12 +18,17 @@ const Main = Styled.div`
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState<string>('');
+    const [isSubmitLoading, setSubmitLoading] = useState<boolean>(false);
     //const [isDisableButt, setDisableButt] = useState<boolean>(true);
+    const [isSubmitDisable, setSubmitDisable] = useState<boolean>(false);
     const [attn, setAttn] = useState<string>('');
     let router = useRouter();
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+        setSubmitLoading(!isSubmitLoading);
+        setSubmitDisable(true);
+
         const data = {
             email: email
         }
@@ -44,6 +50,9 @@ const ForgotPassword = () => {
                         break;
                     default:
                         setAttn(res.data.msg);
+                        setSubmitLoading(false);
+                        setSubmitDisable(true);
+                        setTimeout(()=> {setSubmitDisable(false);}, 5000);
                         break;
                 }
             })
@@ -72,11 +81,12 @@ const ForgotPassword = () => {
                         <label className={styled['regis__form-label']}>Enter Your Email</label><br />
                         <input type="email" onChange={(e) => setEmail(e.target.value)} className={styled['regis__form-input']} required /><br />
 
-                        <RegisButtonSubmit/>
+                        <RegisButtonSubmit isDisable={isSubmitDisable} />
                     </form>
                     <h3 className="txt-center col-red">{attn}</h3>
                 </section>
                 <section className="div-ghost"></section>
+                {isSubmitLoading && (<Loading/>)}
             </Main>
             <footer className={`${styled['regis__footer']} font-ss bg-grey`}>
                 <ul className="txt-center col-grey-dark" style={{ paddingTop: '.5rem' }}>

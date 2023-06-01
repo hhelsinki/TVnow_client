@@ -26,7 +26,7 @@ interface State {
     country: string
 }
 
-const ThirteenReasonsWhy = () => {
+const ASeriesOfUnfortunateEvents = () => {
     const router = useRouter();
     const loginSeo = useSelector((state:any) => state.loginSeo);
     //const query = router.pathname.replace(query_path, '');
@@ -104,8 +104,8 @@ const ThirteenReasonsWhy = () => {
     return (
         <>
             <Head>
-                <title>TVnow: 13 Reasons Why</title>
-                <meta name="description" content="Watch 13 Reasons Why Season 1, Watch 13 Reasons Why Season 2, Watch 13 Reasons Why Season 3, Watch 13 Reasons Why Season 4" />
+                <title>TVnow: A Series of Unfortunate Events</title>
+                <meta name="description" content="Watch A Series of Unfortunate Events Season 1, Watch A Series of Unfortunate Events Season 2, Watch A Series of Unfortunate Events Season 3, Watch A Series of Unfortunate Events Season 4" />
             </Head>
             <HeaderSEO />
             <main className="main scroll-y">
@@ -160,4 +160,4 @@ const ThirteenReasonsWhy = () => {
     );
 }
 
-export default ThirteenReasonsWhy;
+export default ASeriesOfUnfortunateEvents;

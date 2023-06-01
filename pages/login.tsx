@@ -5,6 +5,7 @@ import styled from '/styles/login.module.scss';
 import { API, baseKeyApi } from "@/functions/api";
 import { useRouter } from "next/navigation";
 import Error from "@/common/Error";
+import Loading from "@/common/Loading";
 
 interface State {
     username: string,
@@ -19,11 +20,15 @@ export default function Login() {
         show_password: false,
         attn: ''
     });
+    const [isSubmitLoading, setSubmitLoading] = useState<boolean>(false);
+    const [isSubmitDisable, setSubmitDisable] = useState<boolean>(false);
     const [isErrLogin, setErrLogin] = useState<boolean>(false);
     let router = useRouter();
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+        setSubmitLoading(!isSubmitLoading); //submit loading is enable
+        setSubmitDisable(true); //submit butt is disable
         const data = {
             username: values.username,
             password: values.password
@@ -38,7 +43,7 @@ export default function Login() {
         }
         await axios(config)
             .then((res) => {
-                console.log(res.data)
+                console.log(res.data);
                 switch (res.data.status) {
                     case true:
                         setValues({ ...values, attn: '' });
@@ -46,9 +51,13 @@ export default function Login() {
                         router.push('/home');
                         break;
                     case false: default:
+                        setSubmitLoading(false); //submit loading is disable
                         setValues({ ...values, attn: res.data.msg });
                         setErrLogin(true);
-                        setTimeout(()=>{setErrLogin(false)}, 3000);
+                        setSubmitDisable(true); //submit butt is enable
+                        setTimeout(()=>{setErrLogin(false); setSubmitDisable(false);}, 3000);
+                        
+                        
                         break;
                 }
             }).catch((err) => {
@@ -90,7 +99,7 @@ export default function Login() {
                             </div>
                             <br />
 
-                            <button type='submit' className={`${styled['login__input-submit']} dp-block bd-zero col-white cursor`}>LOG IN</button>
+                            <button type='submit' disabled={isSubmitDisable} className={`${styled['login__input-submit']} dp-block bd-zero col-white cursor`}>LOG IN</button>
                             <br/>
                         </form>
                         <div className={`${styled['login__trial']} txt-center`}>
@@ -100,6 +109,7 @@ export default function Login() {
                     </section>
                     <div className="div-ghost"></div>
                 </div>
+                {isSubmitLoading && (<Loading/>)}
                 {isErrLogin && (<Error text={values.attn}/>)}
 
             </main>
