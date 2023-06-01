@@ -104,7 +104,7 @@ const JackRyan = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Tom Clansy's Jack Ryan</title>
+                <title>TVnow: Tom Clansy&apos;s Jack Ryan</title>
                 <meta name="description" content="Watch Tom Clansy's Jack Ryan Season 1, Watch Tom Clansy's Jack Ryan Season 2, Watch Tom Clansy's Jack Ryan Season 3" />
             </Head>
             <HeaderSEO />

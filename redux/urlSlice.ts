@@ -6,7 +6,7 @@ interface URL {
 }
 
 const initialState:URL = {
-    api: 'http://localhost:3001/',
+    api: 'https://gray-inquisitive-penguin.cyclic.app/',
     key: 'vid:0Uhh9SSorq/bgkOYKnQ9A2q='
 }
 

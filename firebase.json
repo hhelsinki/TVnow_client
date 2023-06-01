@@ -1,0 +1,69 @@
+{
+  "functions": {
+    "source": "functions"
+  },
+  "hosting": {
+    "public": "out",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/login",
+        "destination": "/login.html"
+      },
+      {
+        "source": "/password-forgot",
+        "destination": "/password-forgot.html"
+      },
+      {
+        "source": "/register-I",
+        "destination": "/register-I.html"
+      },
+      {
+        "source": "/register-II",
+        "destination": "/register-II.html"
+      },
+      {
+        "source": "/register-III",
+        "destination": "/register-III.html"
+      },
+      {
+        "source": "/register-IV",
+        "destination": "/register-IV.html"
+      },
+      {
+        "source": "/register-verify",
+        "destination": "/register-verify.html"
+      },
+      {
+        "source": "/home",
+        "destination": "/home.html"
+      },
+      {
+        "source": "/saved",
+        "destination": "/saved.html"
+      },
+      {
+        "source": "/settings",
+        "destination": "/settings.html"
+      },
+      {
+        "source": "/shows/**",
+        "destination": "/shows/[id].html"
+      },
+      {
+        "source": "/movies/**",
+        "destination": "/movies/[id].html"
+      }
+
+    
+    ]
+  }
+}

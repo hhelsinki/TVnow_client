@@ -5,6 +5,7 @@ import RegisStep from "@/common/regis_step";
 import RegisButtonSubmit from "@/common/regis_button_submit";
 import { useRouter } from "next/navigation";
 import { API, baseKeyApi } from "@/functions/api";
+import Loading from "@/common/Loading";
 
 interface Actives {
     visa: boolean,
@@ -26,6 +27,8 @@ export default function RegisterIII() {
         payment: '',
         paycode: ''
     });
+    const [isSubmitDisable, setSubmitDisable] = useState<boolean>(true);
+    const [isSubmitLoading, setSubmitLoading] = useState<boolean>(false);
     const [giftcardCheck, setGiftcardCheck] = useState<string>('');
     let router = useRouter();
 
@@ -46,11 +49,11 @@ export default function RegisterIII() {
         let keycode: any = e.code;
         switch (keycode) {
             case 'Backspace':
-                console.log('you press backspace');
-                console.log(e.target.value.length);
+                //console.log('you press backspace');
+                //console.log(e.target.value.length);
                 if ((e.target.value.length === 16)) {
                     e.target.value.slice('-', -1);
-                    console.log(e.target.value);
+                    //console.log(e.target.value);
                 }
                 break;
             default:
@@ -64,6 +67,8 @@ export default function RegisterIII() {
     }
 
     const handleValidateGiftcard = async () => {
+        setSubmitLoading(true);
+
         let code: string = values.paycode.replaceAll('-', '');
         const data = {
             giftcard_code: code
@@ -82,11 +87,14 @@ export default function RegisterIII() {
             case true:
                 axios(config)
                     .then((res) => {
-                        console.log(res.data);
+                        //console.log(res.data);
+                        setSubmitLoading(false);
+                        
                         switch (res.data.status) {
                             case true:
                                 setGiftcardCheck('✅️');
                                 sessionStorage.setItem('Payment', 'Giftcard');
+                                setSubmitDisable(false);
                                 break;
                             case false: default:
                                 setGiftcardCheck('❌️');
@@ -94,7 +102,7 @@ export default function RegisterIII() {
                                 break;
                         }
                     })
-                    .catch((err) => { console.log(err); console.log('err: API check-giftcard') })
+                    .catch((err) => { console.log('err: API check-giftcard') })
                 break;
             case false: default:
                 setGiftcardCheck('❌️');
@@ -123,7 +131,7 @@ export default function RegisterIII() {
             }
             axios(config)
                 .then((res) => {
-                    console.log(res.data)
+                    //console.log(res.data)
                     switch (res.data.status) {
                         case true:
                             router.push('/register-IV')
@@ -208,13 +216,14 @@ export default function RegisterIII() {
                         <form onSubmit={handleSubmit} className={`${styled['regis__form']} div-center`}>
                             <p className="txt-center">By clicking “CONTINUE” you agree to the TVnow Terms of Use and Privacy Policy.</p>
                             <div style={{ width: '100%', maxWidth: '380px'}} className="div-center">
-                                <RegisButtonSubmit />
+                                <RegisButtonSubmit isDisable={isSubmitDisable}/>
                             </div>
                         </form>
                     </section>
 
 
                     <div className='div-ghost'></div>
+                    {isSubmitLoading && (<Loading/>)}
 
                 </section>
             </main>

@@ -124,7 +124,7 @@ export default function RegisterIV() {
                         <p>Email: {user.email}</p>
                         <p style={{ textTransform: 'capitalize' }}>Plan: {user.plan}</p>
                         <p>Payment: {values.payment}</p>
-                        <p>Code: {values.paycode} <a href='/register-III' style={{ color: '#8b0000' }}><small>Not my code?</small></a></p>
+                        <p>Code: {values.paycode} <a onClick={() => {sessionStorage.removeItem('Payment'); router.push('/register-III')}} className='cursor' style={{ color: '#8b0000' }}><small>Not my code?</small></a></p>
                     </div>
                     <div>
                         <br />
