@@ -110,7 +110,7 @@ const LORTheReturnOfTheKing = () => {
                                 <div className={`${styled['show__hr-overlay']} cursor`}>
                                     <div className={styled['show__hr-txt']}>{el.title}</div>
                                 </div>
-                                <img src={"http://localhost:3001" + el.img} />
+                                <img src={API + el.img} />
                                 <span className="abs mobile">{el.title.substring(0, 10)}{el.title.length >= 10 && '...'}</span>
                                 <span className="abs tablet">{el.title.substring(0, 20)}{el.title.length >= 20 && '...'}</span>
                                 <span className="abs pc">{el.title.substring(0, 25)}{el.title.length >= 25 && '...'}</span>

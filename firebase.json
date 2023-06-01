@@ -19,8 +19,16 @@
         "destination": "/login.html"
       },
       {
-        "source": "/password-forgot",
-        "destination": "/password-forgot.html"
+        "source": "/login-twofac_email",
+        "destination": "/login-twofac_email.html"
+      },
+      {
+        "source": "/movie",
+        "destination": "/movie.html"
+      },
+      {
+        "source": "/show",
+        "destination": "/show.html"
       },
       {
         "source": "/register-I",
@@ -43,6 +51,14 @@
         "destination": "/register-verify.html"
       },
       {
+        "source": "/password-submit",
+        "destination": "/password-submit.html"
+      },
+      {
+        "source": "/password-forgot",
+        "destination": "/password-forgot.html"
+      },
+      {
         "source": "/home",
         "destination": "/home.html"
       },
@@ -55,15 +71,282 @@
         "destination": "/settings.html"
       },
       {
-        "source": "/shows/**",
-        "destination": "/shows/[id].html"
+        "source": "/category",
+        "destination": "/category/index.html"
       },
       {
-        "source": "/movies/**",
-        "destination": "/movies/[id].html"
+        "source": "/category/type",
+        "destination": "/category/type.html"
+      },
+      {
+        "source": "/contents_movies",
+        "destination": "/contents_movies.html"
+      },
+      {
+        "source": "/contents_show",
+        "destination": "/contents_show.html"
+      },
+      {
+        "source": "/movies/black-panther",
+        "destination": "/movies/black-panther.html"
+      },
+      {
+        "source": "/movies/bullet-train",
+        "destination": "/movies/bullet-train.html"
+      },
+      {
+        "source": "/movies/call-me-by-your-name",
+        "destination": "/movies/call-me-by-your-name.html"
+      },
+      {
+        "source": "/movies/dr-strange-in-the-multiverse-of-madness",
+        "destination": "/movies/dr-strange-in-the-multiverse-of-madness.html"
+      },
+      {
+        "source": "/movies/dunkirk",
+        "destination": "/movies/dunkirk.html"
+      },
+      {
+        "source": "/movies/elvis",
+        "destination": "/movies/elvis.html"
+      },
+      {
+        "source": "/movies/fight-club",
+        "destination": "/movies/fight-club.html"
+      },
+      {
+        "source": "/movies/inception",
+        "destination": "/movies/inception.html"
+      },
+      {
+        "source": "/movies/interstellar",
+        "destination": "/movies/interstellar.html"
+      },
+      {
+        "source": "/movies/lincoln",
+        "destination": "/movies/lincoln.html"
+      },
+      {
+        "source": "/movies/minion-the-rise-gru",
+        "destination": "/movies/minion-the-rise-gru.html"
+      },
+      {
+        "source": "/movies/once-upon-a-time-in-hollywood",
+        "destination": "/movies/once-upon-a-time-in-hollywood.html"
+      },
+      {
+        "source": "/movies/one-piece-red",
+        "destination": "/movies/one-piece-red.html"
+      },
+      {
+        "source": "/movies/parasite",
+        "destination": "/movies/parasite.html"
+      },
+      {
+        "source": "/movies/pulp-fiction",
+        "destination": "/movies/pulp-fiction.html"
+      },
+      {
+        "source": "/movies/pulp-fiction",
+        "destination": "/movies/pulp-fiction.html"
+      },
+      {
+        "source": "/movies/schindlers-list",
+        "destination": "/movies/schindlers-list.html"
+      },
+      {
+        "source": "/movies/scream",
+        "destination": "/movies/scream.html"
+      },
+      {
+        "source": "/movies/shrek",
+        "destination": "/movies/shrek.html"
+      },
+      {
+        "source": "/movies/sonic-the-hedgehog-2",
+        "destination": "/movies/sonic-the-hedgehog-2.html"
+      },
+      {
+        "source": "/movies/star-war-a-new-hope",
+        "destination": "/movies/star-war-a-new-hope.html"
+      },
+      {
+        "source": "/movies/star-wars-episode-v-the-empire-strikes-back",
+        "destination": "/movies/star-wars-episode-v-the-empire-strikes-back.html"
+      },
+      {
+        "source": "/movies/the-batman",
+        "destination": "/movies/the-batman.html"
+      },
+      {
+        "source": "/movies/the-dark-knight",
+        "destination": "/movies/the-dark-knight.html"
+      },
+      {
+        "source": "/movies/the-godfather-part-ii",
+        "destination": "/movies/the-godfather-part-ii.html"
+      },
+      {
+        "source": "/movies/the-godfather",
+        "destination": "/movies/the-godfather.html"
+      },
+      {
+        "source": "/movies/the-lion-king",
+        "destination": "/movies/the-lion-king.html"
+      },
+      {
+        "source": "/movies/the-lord-of-the-rings-the-fellowship-of-the-ring",
+        "destination": "/movies/the-lord-of-the-rings-the-fellowship-of-the-ring.html"
+      },
+      {
+        "source": "/movies/the-lord-of-the-rings-the-return-of-the-king",
+        "destination": "/movies/the-lord-of-the-rings-the-return-of-the-king.html"
+      },
+      {
+        "source": "/movies/the-lord-of-the-rings-the-two-towers",
+        "destination": "/movies/the-lord-of-the-rings-the-two-towers.html"
+      },
+      {
+        "source": "/movies/the-matrix",
+        "destination": "/movies/the-matrix.html"
+      },
+      {
+        "source": "/movies/the-shawshank-redemption",
+        "destination": "/movies/the-shawshank-redemption.html"
+      },
+      {
+        "source": "/movies/titanic",
+        "destination": "/movies/titanic.html"
+      },
+      {
+        "source": "/movies/top-gun-maverick",
+        "destination": "/movies/top-gun-maverick.html"
+      },
+      {
+        "source": "/movies/where-the-crawdads-sing",
+        "destination": "/movies/where-the-crawdads-sing.html"
+      },
+      {
+        "source": "/shows/13-reasons-why",
+        "destination": "/shows/13-reasons-why.html"
+      },
+      {
+        "source": "/shows/a-series-of-unfortunate-events",
+        "destination": "/shows/a-series-of-unfortunate-events.html"
+      },
+      {
+        "source": "/shows/american-crime-story",
+        "destination": "/shows/american-crime-story.html"
+      },
+      {
+        "source": "/shows/american-horror-story",
+        "destination": "/shows/american-horror-story.html"
+      },
+      {
+        "source": "/shows/big-little-lies",
+        "destination": "/shows/big-little-lies.html"
+      },
+      {
+        "source": "/shows/breaking-bad",
+        "destination": "/shows/breaking-bad.html"
+      },
+      {
+        "source": "/shows/chicago-pd",
+        "destination": "/shows/chicago-pd.html"
+      },
+      {
+        "source": "/shows/dahmer",
+        "destination": "/shows/dahmer.html"
+      },
+      {
+        "source": "/shows/downton-abby",
+        "destination": "/shows/downton-abby.html"
+      },
+      {
+        "source": "/shows/game-of-throne",
+        "destination": "/shows/game-of-throne.html"
+      },
+      {
+        "source": "/shows/hannibal",
+        "destination": "/shows/hannibal.html"
+      },
+      {
+        "source": "/shows/homecoming",
+        "destination": "/shows/homecoming.html"
+      },
+      {
+        "source": "/shows/homeland",
+        "destination": "/shows/homeland.html"
+      },
+      {
+        "source": "/shows/house-of-dragon",
+        "destination": "/shows/house-of-dragon.html"
+      },
+      {
+        "source": "/shows/jack-ryan",
+        "destination": "/shows/jack-ryan.html"
+      },
+      {
+        "source": "/shows/law-n-order",
+        "destination": "/shows/law-n-order.html"
+      },
+      {
+        "source": "/shows/money-heist",
+        "destination": "/shows/money-heist.html"
+      },
+      {
+        "source": "/shows/mr-robot",
+        "destination": "/shows/mr-robot.html"
+      },
+      {
+        "source": "/shows/prison-break",
+        "destination": "/shows/prison-break.html"
+      },
+      {
+        "source": "/shows/sharp-ojects",
+        "destination": "/shows/sharp-ojects.html"
+      },
+      {
+        "source": "/shows/tell-me-lies",
+        "destination": "/shows/tell-me-lies.html"
+      },
+      {
+        "source": "/shows/the-americans",
+        "destination": "/shows/the-americans.html"
+      },
+      {
+        "source": "/shows/the-crown",
+        "destination": "/shows/the-crown.html"
+      },
+      {
+        "source": "/shows/the-good-doctor",
+        "destination": "/shows/the-good-doctor.html"
+      },
+      {
+        "source": "/shows/the-good-fight",
+        "destination": "/shows/the-good-fight.html"
+      },
+      {
+        "source": "/shows/the-good-wife",
+        "destination": "/shows/the-good-wife.html"
+      },
+      {
+        "source": "/shows/the-handmaids-tale",
+        "destination": "/shows/the-handmaids-tale.html"
+      },
+      {
+        "source": "/shows/the-mavelous-mrs-maisel",
+        "destination": "/shows/the-mavelous-mrs-maisel.html"
+      },
+      {
+        "source": "/shows/the-punisher",
+        "destination": "/shows/the-punisher.html"
+      },
+      {
+        "source": "/shows/the-serpent-queen",
+        "destination": "/shows/the-serpent-queen.html"
       }
-
-    
+      
     ]
   }
 }

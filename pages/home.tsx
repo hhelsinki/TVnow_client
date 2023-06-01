@@ -315,16 +315,16 @@ export default function Home() {
                     <section className={styled["home__intro-img"]}>
                         <Slide indicators={true} ref={slideRef}>
                             <div style={{ textAlign: 'center', fontSize: '30px' }}>
-                                <Link href={showcase.one_url}><img src={`http://localhost:3001/${showcase.one}`} className="img" /></Link>
+                                <Link href={showcase.one_url}><img src={`${API}/${showcase.one}`} className="img" /></Link>
                             </div>
                             <div style={{ textAlign: 'center', fontSize: '30px' }}>
-                                <Link href={showcase.two_url}><img src={`http://localhost:3001/${showcase.two}`} className="img" /></Link>
+                                <Link href={showcase.two_url}><img src={`${API}/${showcase.two}`} className="img" /></Link>
                             </div>
                             <div style={{ textAlign: 'center', fontSize: '30px' }}>
-                                <Link href={showcase.three_url}><img src={`http://localhost:3001/${showcase.three}`} className="img" /></Link>
+                                <Link href={showcase.three_url}><img src={`${API}/${showcase.three}`} className="img" /></Link>
                             </div>
                             <div style={{ textAlign: 'center', fontSize: '30px' }}>
-                                <Link href={showcase.four_url}><img src={`http://localhost:3001/${showcase.four}`} className="img" /></Link>
+                                <Link href={showcase.four_url}><img src={`${API}/${showcase.four}`} className="img" /></Link>
                             </div>
                         </Slide>
                     </section>
@@ -339,7 +339,7 @@ export default function Home() {
                                         <Link href={el.url}><div className={styled['home__box-overlay']}>
                                             <div className={styled['home__box-txt']}>{el.title}</div>
                                         </div>
-                                            <img src={"http://localhost:3001/" + el.img} />
+                                            <img src={API + el.img} />
                                             {isLoadTrending && (<span>...</span>)}
                                             <span className="abs">{el.title.substring(0, 10)}{el.title.length >= 10 && '...'}</span></Link>
                                     </div>
@@ -359,7 +359,7 @@ export default function Home() {
                                         <Link href={el.url}><div className={styled['home__box-overlay']}>
                                             <div className={styled['home__box-txt']}>{el.title}</div>
                                         </div>
-                                            <img src={"http://localhost:3001/" + el.img} />
+                                            <img src={API + el.img} />
                                             {isLoadMostwatch && (<span>...</span>)}
                                             <span className="abs">{el.title.substring(0, 10)}{el.title.length >= 10 && '...'}</span></Link>
                                     </div>
@@ -379,7 +379,7 @@ export default function Home() {
                                         <Link href={el.url}><div className={styled['home__box-overlay']}>
                                             <div className={styled['home__box-txt']}>{el.title}</div>
                                         </div>
-                                            <img src={"http://localhost:3001/" + el.img} />
+                                            <img src={API + el.img} />
                                             {isLoadRecentadd && (<span>...</span>)}
                                             <span className="abs">{el.title.substring(0, 10)}{el.title.length >= 10 && '...'}</span></Link>
                                     </div>
@@ -399,7 +399,7 @@ export default function Home() {
                                         <Link href={el.url}><div className={styled['home__box-overlay']}>
                                             <div className={styled['home__box-txt']}>{el.title}</div>
                                         </div>
-                                            <img src={"http://localhost:3001/" + el.img} />
+                                            <img src={API + el.img} />
                                             {isLoadExclusive && (<span>...</span>)}
                                             <span className="abs">{el.title.substring(0, 10)}{el.title.length >= 10 && '...'}</span></Link>
                                     </div>

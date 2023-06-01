@@ -118,7 +118,7 @@ const Shows = () => {
                                             <div className={`${styled['show__box-txt']} abs`}>{el.title}</div>
                                         </div>
                                         <div className={styled['show__box-img']}>
-                                            <img src={`http://localhost:3001${el.img}`} alt='' />
+                                            <img src={`${API}${el.img}`} alt='' />
                                             <span className='mobile'>{el.title.substring(0, 10)}{el.title.length >= 10 && '...'}</span>
                                             <span className='tablet'>{el.title.substring(0, 10)}{el.title.length >= 10 && '...'}</span>
                                             <span className='pc'>{el.title.substring(0, 17)}{el.title.length >= 17 && '...'}</span>
