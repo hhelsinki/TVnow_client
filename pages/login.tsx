@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import styled from '/styles/login.module.scss';
-import { API, baseKeyApi } from "@/functions/api";
+import { API, KEY } from "@/functions/api";
 import { useRouter } from "next/navigation";
 import Error from "@/common/Error";
 import Loading from "@/common/Loading";
@@ -37,13 +37,13 @@ export default function Login() {
             url: `${API}/login`,
             method: 'POST',
             headers: {
-                api_key: baseKeyApi
+                'api-key': KEY
             },
             data: data
         }
         await axios(config)
             .then((res) => {
-                console.log(res.data);
+                //console.log(res.data);
                 switch (res.data.status) {
                     case true:
                         setValues({ ...values, attn: '' });

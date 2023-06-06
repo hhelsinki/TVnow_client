@@ -79,8 +79,8 @@
         "destination": "/category/type.html"
       },
       {
-        "source": "/contents_movies",
-        "destination": "/contents_movies.html"
+        "source": "/contents_movie",
+        "destination": "/contents_movie.html"
       },
       {
         "source": "/contents_show",

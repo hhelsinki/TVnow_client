@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import styled from '/styles/register.module.scss';
 import Styled from 'styled-components'
-import { baseKeyApi } from "@/functions/api";
 import RegisButtonSubmit from "@/common/regis_button_submit";
-import { API } from "@/functions/api";
+import { API, KEY } from "@/functions/api";
 import Cookies from "js-cookie";
 
 const Main = Styled.div`
@@ -64,7 +63,7 @@ const RegisterVerify = () => {
         let token: string = (new URLSearchParams(location.search)).get('token');
         console.log(user, token)
 
-        //url client = http://localhost:3000/password-submit?user=${user_email}&token=${user_token}
+        //url client = http://localhost:3000/password-submit?user=${user_email}&token=${'user-token'}
         const data = {
             email: user,
             password_new: password.confirm
@@ -73,9 +72,9 @@ const RegisterVerify = () => {
             method: 'POST',
             url: `${API}/user-password`,
             headers: {
-                api_key: baseKeyApi,
-                user_token: token
-            },
+                'api-key': KEY,
+                'user-token': Cookies.get('TVnow_Login_Token')
+                },
             data: data
         }
         axios(config)
@@ -93,9 +92,13 @@ const RegisterVerify = () => {
             })
             .catch((err) => { 
                 console.log('err: API user-password');
-                if (err.response.status === 401 || err.response.status === 402) {
-                    router.push('/login');
-                } 
+                if (err.response) {
+                    if (err.response.status === 401 || err.response.status === 402) {
+                        router.push('/login');
+                        return;
+                    }
+                    return;
+                }
             })
     }
 

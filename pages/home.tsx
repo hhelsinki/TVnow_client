@@ -6,7 +6,7 @@ import Header from "@/parts/header";
 import Footer from "@/parts/footer";
 import { Slide, SlideshowRef } from "@/common/slideshow";
 import 'react-slideshow-image/dist/styles.css';
-import { API, baseKeyApi } from "@/functions/api";
+import { API } from "@/functions/api";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Loading from "@/common/Loading";
@@ -44,15 +44,14 @@ export default function Home() {
     let router = useRouter();
 
     //Load API
-    const headers = {
-        api_key: baseKeyApi,
-        user_token: Cookies.get('TVnow_Login_Token')
-    }
     const loadShowcase = async () => {
         const config = {
             method: 'GET',
             url: `${API}/showcase`,
-            headers: headers
+            headers: {
+                'api-key': process.env.baseKeyAPI,
+                'user-token': Cookies.get('TVnow_Login_Token')
+            }
         }
         //let newShowcase: any = [];
         await axios(config)
@@ -87,7 +86,10 @@ export default function Home() {
         const config = {
             url: `${API}/trending?limit=8&page=${pageTrendingSt}`,
             method: 'GET',
-            headers: headers
+            headers: {
+                'api-key': process.env.baseKeyAPI,
+                'user-token': Cookies.get('TVnow_Login_Token')
+            }
         }
         let newTrending: any = [];
         setLoadTrending(true);
@@ -102,12 +104,17 @@ export default function Home() {
                     setTrending((current: any) => [...current, ...newTrending]);
                 })
                 .catch((err) => {
+                    //console.log(err);
                     console.log('err: API trending?limit=8&page=${pageTrending}');
-                    if (err.response.status === 401 || err.response.status === 402) {
-                        Cookies.set('TVnow_Login_Token', '', { sameSite: 'strict' });
-                        router.push('/login');
+                    /*if (err.response) {
+                        if (err.response.status === 401 || err.response.status === 402) {
+                            Cookies.set('TVnow_Login_Token', '', { sameSite: 'strict' });
+                            router.push('/login');
+                            return;
+                        }
                         return;
-                    }
+                    }*/
+
                 })
         }
         if (pageTrendingSt > pageTrendingEnd) {
@@ -125,7 +132,10 @@ export default function Home() {
         const config = {
             url: `${API}/mostWatch?limit=8&page=${pageMostwatchSt}`,
             method: 'GET',
-            headers: headers
+            headers: {
+                'api-key': process.env.baseKeyAPI,
+                'user-token': Cookies.get('TVnow_Login_Token')
+            }
         }
         let newMostwatch: any = [];
         setLoadMostwatch(true);
@@ -155,7 +165,10 @@ export default function Home() {
         const config = {
             url: `${API}/recentAdd?limit=8&page=${pageRecentaddSt}`,
             method: 'GET',
-            headers: headers
+            headers: {
+                'api-key': process.env.baseKeyAPI,
+                'user-token': Cookies.get('TVnow_Login_Token')
+            }
         }
         let newRecentadd: any = [];
         setLoadRecentadd(true);
@@ -185,7 +198,10 @@ export default function Home() {
         const config = {
             url: `${API}/exclusive?limit=8&page=${pageExclusiveSt}`,
             method: 'GET',
-            headers: headers
+            headers: {
+                'api-key': process.env.baseKeyAPI,
+                'user-token': Cookies.get('TVnow_Login_Token')
+            }
         }
         let newExclusive: any = [];
         setLoadExclusive(true);

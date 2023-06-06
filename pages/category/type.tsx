@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import Header from "@/parts/header";
 import Footer from "@/parts/footer";
 import { query_path } from "@/functions/query";
-import { API, baseKeyApi } from "@/functions/api";
+import { API, KEY } from "@/functions/api";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -35,9 +35,9 @@ const Types = () => {
                     method: 'GET',
                     url: `${API}/${filter}`,
                     headers: {
-                        api_key: baseKeyApi,
-                        user_token: Cookies.get('TVnow_Login_Token')
-                    }
+                        'api-key': KEY,
+                        'user-token': Cookies.get('TVnow_Login_Token')
+                        }
                 }
                 axios(config)
                     .then((res) => {

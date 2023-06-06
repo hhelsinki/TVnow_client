@@ -10,11 +10,12 @@ import { scrollInvertXep, scrollInvertXrelated, scrollInvertXss, scrollXep, scro
 import { query_path } from "@/functions/query";
 import { ContentHeadlineShow } from "@/parts/show";
 import YouTube, { YouTubeProps } from 'react-youtube';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleWishlist } from "@/redux/wishlist/wishlistSlice";
-import { API, baseKeyApi } from "@/functions/api";
+import { API, KEY } from "@/functions/api";
 import { useRouter } from "next/navigation";
 import Loading from "@/common/Loading";
+
 
 interface State {
     title: string,
@@ -71,16 +72,15 @@ const Contents = () => {
             autoplay: 0,
         },
     };
-    const headers = {
-        api_key: baseKeyApi,
-        user_token: Cookies.get('TVnow_Login_Token')
-    }
     const loadContents = async () => {
-        let name:string = (new URLSearchParams(location.search)).get('n');
+        let name: string = (new URLSearchParams(location.search)).get('n');
         const config = {
             method: 'GET',
             url: `${API}/shows/${name}`,
-            headers: headers
+            headers: {
+                'api-key': KEY,
+                'user-token': Cookies.get('TVnow_Login_Token')
+            }
         }
         axios(config)
             .then((res) => {
@@ -121,8 +121,8 @@ const Contents = () => {
             method: 'GET',
             url: `${API}/list-favourite?title=${name}`,
             headers: {
-                api_key: baseKeyApi,
-                user_token: Cookies.get('TVnow_Login_Token')
+                'api-key': KEY,
+                'user-token': Cookies.get('TVnow_Login_Token')
             }
         }
         await axios(config)
@@ -145,11 +145,14 @@ const Contents = () => {
                         break;
                 }
             })
-            .catch((err) => { 
+            .catch((err) => {
                 console.log('err API: list-favourite');
-                if (err.response.status === 401 || err.response.status === 402) {
-                    Cookies.set('TVnow_Login_Token', '', { sameSite: 'strict' });
-                    router.push('/login');
+                if (err.response) {
+                    if (err.response.status === 401 || err.response.status === 402) {
+                        Cookies.set('TVnow_Login_Token', '', { sameSite: 'strict' });
+                        router.push('/login');
+                        return;
+                    }
                     return;
                 }
             })
@@ -163,8 +166,8 @@ const Contents = () => {
             method: 'POST',
             url: `${API}/list-favourite`,
             headers: {
-                api_key: baseKeyApi,
-                user_token: Cookies.get('TVnow_Login_Token')
+                'api-key': KEY,
+                'user-token': Cookies.get('TVnow_Login_Token')
             },
             data: data
         }
@@ -187,7 +190,7 @@ const Contents = () => {
                 if (heartCount === 1) {
                     setHeartFilled(!isHeartFilled);
                     dispatch(toggleWishlist());
-                    
+
                 }
                 //send data 'false' or delete title to API mongo
                 addWishList();
@@ -288,7 +291,7 @@ const Contents = () => {
                 </div>
                 <div className="div-ghost"></div>
                 {/*modal Loading */}
-                {isLoading && (<Loading/>)}
+                {isLoading && (<Loading />)}
             </main >
             <Footer />
         </>

@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import Header from "@/parts/header";
 import Footer from "@/parts/footer";
 import { query_path } from "@/functions/query";
-import { API, baseKeyApi } from "@/functions/api";
+import { API, KEY } from "@/functions/api";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Loading from "@/common/Loading";
@@ -23,9 +23,9 @@ const Shows = () => {
             method: 'GET',
             url: `${API}/shows?limit=12&page=${offset}`,
             headers: {
-                api_key: baseKeyApi,
-                user_token: Cookies.get('TVnow_Login_Token')
-            }
+                'api-key': KEY,
+                'user-token': Cookies.get('TVnow_Login_Token')
+                }
         }
 
         if (offset <= pageEnd) {
@@ -53,9 +53,14 @@ const Shows = () => {
                 })
                 .catch((err) => {
                     console.log('err: API ${title}?limit=12&page=${offset}');
-                    if (err.response.status === 401 || err.response.status === 402) {
-                        router.push('/login');
-                    } 
+                    if (err.response) {
+                        if (err.response.status === 401 || err.response.status === 402) {
+                            Cookies.set('TVnow_Login_Token', '', { sameSite: 'strict' });
+                            router.push('/login');
+                            return;
+                        }
+                        return;
+                    }
 
                 })
         }

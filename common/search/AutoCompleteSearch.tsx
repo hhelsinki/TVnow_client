@@ -1,8 +1,8 @@
-import { API, baseKeyApi } from "@/functions/api";
 import axios from "axios";
 import { useState } from "react";
 import Loading from "../Loading";
 import Cookies from "js-cookie";
+import { API, KEY } from "@/functions/api";
 
 function AutoCompleteSearch({ data }: any) {
   const [suggestions, setSuggestions] = useState<any>([]);
@@ -81,8 +81,8 @@ function AutoCompleteSearch({ data }: any) {
       method: 'GET',
       url: `${API}/search?name=${value}`,
       headers: {
-        api_key: baseKeyApi,
-        user_token: Cookies.get('TVnow_Login_Token')
+        'api-key': KEY,
+        'user-token': Cookies.get('TVnow_Login_Token')
       }
     }
     await axios(config)

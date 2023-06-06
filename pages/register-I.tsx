@@ -4,7 +4,8 @@ import axios from "axios";
 import RegisStep from "@/common/regis_step";
 import RegisButtonSubmit from "@/common/regis_button_submit";
 import { useRouter } from "next/navigation";
-import { API, baseKeyApi } from "@/functions/api";
+import { API, KEY } from "@/functions/api";
+import Loading from "@/common/Loading";
 
 interface State {
     username: string,
@@ -18,6 +19,7 @@ const RegisterI = () => {
     });
     const [userCheck, setUserCheck] = useState<string>('');
     const [emailCheck, setEmailCheck] = useState<string>('');
+    const [isSubmitLoading, setSubmitLoading] = useState<boolean>(false);
     let router = useRouter();
 
     const handleValidateUser = async () => {
@@ -28,7 +30,7 @@ const RegisterI = () => {
             method: 'POST',
             url: `${API}/regis-username_check`,
             headers: {
-                api_key: baseKeyApi
+                'api-key': KEY
             },
             data: data
         }
@@ -40,6 +42,7 @@ const RegisterI = () => {
             default:
                 axios(config)
                     .then((res) => {
+                        
                         console.log(res.data)
                         switch (res.data.status) {
                             case true:
@@ -54,13 +57,14 @@ const RegisterI = () => {
                                 break;
                         }
                     })
-                    .catch((err) => { console.log('err: API check-user'); })
+                    .catch((err) => { setSubmitLoading(!isSubmitLoading); console.log('err: API check-user'); })
                 break;
         }
 
 
     }
     const handleValidateEmail = async () => {
+        setSubmitLoading(true);
         const data = {
             email: values.email
         }
@@ -68,7 +72,7 @@ const RegisterI = () => {
             method: 'POST',
             url: `${API}/regis-email_validate`,
             headers: {
-                api_key: baseKeyApi
+                'api-key': KEY
             },
             data: data
         }
@@ -81,6 +85,7 @@ const RegisterI = () => {
                 axios(config)
                     .then((res) => {
                         console.log(res.data);
+                        setSubmitLoading(false);
                         switch (res.data.status) {
                             case true:
                                 setEmailCheck('✅️');
@@ -94,7 +99,7 @@ const RegisterI = () => {
                                 break;
                         }
                     })
-                    .catch((err) => { console.log('err: API email-validate') })
+                    .catch((err) => { setSubmitLoading(false); console.log('err: API email-validate') })
                 break;
             case false: default:
                 setEmailCheck('❌️');
@@ -154,6 +159,7 @@ const RegisterI = () => {
                         </form>
                     </section>
                     <section className="div-ghost"></section>
+                    {isSubmitLoading &&(<Loading/>)}
                 </div>
 
             </main>

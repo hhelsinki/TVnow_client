@@ -1,4 +1,4 @@
-import { API, baseKeyApi } from "@/functions/api";
+import { API, KEY } from "@/functions/api";
 import Footer from "@/parts/footer";
 import Header from "@/parts/header";
 import axios from "axios";
@@ -28,14 +28,14 @@ const Saved = () => {
             method: 'GET',
             url: `${API}/list-favourite-all`,
             headers: {
-                api_key: baseKeyApi,
-                user_token: Cookies.get('TVnow_Login_Token')
-            }
+                'api-key': KEY,
+                'user-token': Cookies.get('TVnow_Login_Token')
+                }
         }
 
         axios(config)
             .then((res) => {
-                setLoading(!isLoading);
+                setLoading(false);
                 console.log(res.data);
                 let newFavourite: any = [];
 
@@ -44,11 +44,17 @@ const Saved = () => {
 
 
             })
-            .catch((err) => { 
+            .catch((err) => {
+                setLoading(false); 
                 console.log('err API: /favourite-list-all');
-                if (err.response.status === 401 || err.response.status === 402) {
-                    router.push('/login');
-                } 
+                /*if (err.response) {
+                    if (err.response.status === 401 || err.response.status === 402) {
+                        Cookies.set('TVnow_Login_Token', '', { sameSite: 'strict' });
+                        router.push('/login');
+                        return;
+                    }
+                    return;
+                }*/ 
             })
     }
 

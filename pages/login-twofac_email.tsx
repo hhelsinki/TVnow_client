@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from 'next/navigation';
 import styled from '/styles/register.module.scss';
 import Styled from 'styled-components'
-import { baseKeyApi } from "@/functions/api";
-import { API } from "@/functions/api";
+import { API, KEY } from "@/functions/api";
 import Cookies from "js-cookie";
 import VerificationInput from "react-verification-input";
 
@@ -38,7 +37,7 @@ const RegisterVerify = () => {
             method: 'POST',
             url: `${API}/user-twofactor`,
             headers: {
-                api_key: baseKeyApi
+                'api-key': KEY
             },
             data: data
         }
@@ -57,6 +56,13 @@ const RegisterVerify = () => {
             })
             .catch((err) => {
                 console.log('err: API user-twofactor');
+                if (err.response) {
+                    if (err.response.status === 405 || err.response.status === 402) {
+                        router.push('/login');
+                        return;
+                    }
+                    return;
+                }
             })
 
         return;

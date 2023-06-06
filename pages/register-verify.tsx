@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import styled from '/styles/register.module.scss';
 import Styled from 'styled-components'
-import { API, baseKeyApi } from "@/functions/api";
-import Cookies from "js-cookie";
+import { API, KEY } from "@/functions/api";
 import Loading from "@/common/Loading";
 
 const Main = Styled.div`
@@ -41,7 +40,7 @@ const RegisterVerify = () => {
                 method: 'POST',
                 url: `${API}/regis-activate?user=${user}&token=${token}`,
                 headers: {
-                    api_key: baseKeyApi
+                    'api-key': KEY
                 }
             }
 

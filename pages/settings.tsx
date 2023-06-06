@@ -1,5 +1,5 @@
 import Loading from "@/common/Loading";
-import { API, baseKeyApi } from "@/functions/api";
+import { API, KEY } from "@/functions/api";
 import axios from "axios";
 import Cookies from "js-cookie";
 import Link from "next/link";
@@ -45,11 +45,6 @@ function Settings() {
     const [isTwoFactor, setTwoFactor] = useState<boolean>(false);
     let router = useRouter();
 
-    const headers: any = {
-        api_key: baseKeyApi,
-        user_token: Cookies.get('TVnow_Login_Token')
-    }
-
     const handleSubmitRedeemCode = async (e: any) => {
         e.preventDefault();
         const data = {
@@ -58,7 +53,10 @@ function Settings() {
         const config = {
             url: `${API}/user-redeem`,
             method: 'POST',
-            headers: headers,
+            headers: {
+                'api-key': KEY,
+                'user-token': Cookies.get('TVnow_Login_Token')
+            },
             data: data
         }
         await axios(config)
@@ -77,7 +75,10 @@ function Settings() {
         const config = {
             url: `${API}/user-password_change`,
             method: 'POST',
-            headers: headers,
+            headers: {
+                'api-key': KEY,
+                'user-token': Cookies.get('TVnow_Login_Token')
+            },
             data: data
         }
         await axios(config)
@@ -104,11 +105,14 @@ function Settings() {
         const config = {
             url: `${API}/user-twofactor_change`,
             method: 'POST',
-            headers: headers,
+            headers: {
+                'api-key': KEY,
+                'user-token': Cookies.get('TVnow_Login_Token')
+            },
             data: data
         }
         //setTwoFactor(!isTwoFactor);
-        
+
         await axios(config)
             .then((res) => {
                 console.log(res.data)
@@ -133,7 +137,7 @@ function Settings() {
                         break;
                 }
             })
-            .catch((err) => {  setLoading(false); console.log('err API: user-req-twofactor') })
+            .catch((err) => { setLoading(false); console.log('err API: user-req-twofactor') })
 
     }
     const handleLogout = async () => {
@@ -141,7 +145,7 @@ function Settings() {
             method: 'POST',
             url: `${API}/logout`,
             headers: {
-                api_key: baseKeyApi
+                'api-key': KEY
             },
             data: {
                 email: values.email
@@ -194,8 +198,8 @@ function Settings() {
             url: `${API}/user-profile`,
             method: 'GET',
             headers: {
-                api_key: baseKeyApi,
-                user_token: Cookies.get('TVnow_Login_Token')
+                'api-key': KEY,
+                'user-token': Cookies.get('TVnow_Login_Token')
             }
         }
         axios(config)
@@ -232,11 +236,16 @@ function Settings() {
                 }
 
             })
-            .catch((err) => { 
-                console.log('err: API user-profile'); 
-                if (err.response.status === 401 || err.response.status === 402) {
-                    router.push('/login');
-                } 
+            .catch((err) => {
+                console.log('err: API user-profile');
+                if (err.response) {
+                    if (err.response.status === 401 || err.response.status === 402) {
+                        Cookies.set('TVnow_Login_Token', '', { sameSite: 'strict' });
+                        router.push('/login');
+                        return;
+                    }
+                    return;
+                }
             })
 
 
@@ -333,7 +342,7 @@ function Settings() {
                         <div className="div-ghost"></div>
                     </article>
                     <article className="footer-settings--footer">
-                        <div onClick={()=> setLogout(!isLogout)} className="div-center txt-center cursor">LOGOUT</div>
+                        <div onClick={() => setLogout(!isLogout)} className="div-center txt-center cursor">LOGOUT</div>
                     </article>
                 </div>
             </div>
@@ -526,7 +535,12 @@ function Settings() {
                 </section>
                 <section className="footer-settings--main scroll-y bg-second">
                     <div className="footer-settings rel div-content div-center">
-                        <p className="txt-center">Our Policy...</p>
+                        <p className="txt-center"><strong>Our Policy / Disclaimer</strong></p>
+                        <ul>
+                            <li>This project is sameple mockup and only provide official trailer of video from the youtube website.</li><br />
+                            <li>No any collecting data from user.</li><br />
+                            <li>Request for delete from the video owner, kindly contact me at bongkotsaelo.cmtc@gmail.com</li>
+                        </ul>
                     </div>
 
                     <div className="div-ghost"></div>
@@ -542,15 +556,15 @@ function Settings() {
                         <h1 className="txt-center">Logout</h1>
                         <p className="text-lg txt-center">Are you sure you want to logout?</p>
                         <div className="div-center">
-                            <button type='button' onClick={()=>setLogout(!isLogout)} className="bd-zero col-white cursor" style={{marginRight:'1rem', background:'#01721d'}}>No</button>
-                            <button type='button' onClick={handleLogout} className="bd-zero col-white cursor" style={{background:'#8b0000'}}>Yes</button>
+                            <button type='button' onClick={() => setLogout(!isLogout)} className="bd-zero col-white cursor" style={{ marginRight: '1rem', background: '#01721d' }}>No</button>
+                            <button type='button' onClick={handleLogout} className="bd-zero col-white cursor" style={{ background: '#8b0000' }}>Yes</button>
                         </div>
 
                     </div>
                 </div>
             </section>)}
             {/*modal loading*/}
-            {isLoading && (<Loading/>)}
+            {isLoading && (<Loading />)}
         </>
 
     );

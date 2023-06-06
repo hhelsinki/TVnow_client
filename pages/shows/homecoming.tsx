@@ -10,7 +10,7 @@ import LoginSEO from "@/parts/seo/login";
 import HeaderSEO from "@/parts/seo/header";
 import FooterSEO from "@/parts/seo/footer";
 import { useSelector } from "react-redux";
-import { API, baseKeyApi } from "@/functions/api";
+import { API, KEY } from "@/functions/api";
 //import { query_path } from "@/functions/query";
 
 interface State {
@@ -50,9 +50,9 @@ const Homecoming = () => {
             method: 'GET',
             url: `${API}${router.pathname}-season-1`,
             headers: {
-                api_key: baseKeyApi,
-                user_token: Cookies.get('TVnow_Login_Token')
-            }
+                'api-key': KEY,
+                'user-token': Cookies.get('TVnow_Login_Token')
+                }
         }
         await axios(config)
             .then((res) => {

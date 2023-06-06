@@ -3,9 +3,8 @@ import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import styled from '/styles/register.module.scss';
 import Styled from 'styled-components'
-import { baseKeyApi } from "@/functions/api";
+import { API, KEY } from "@/functions/api";
 import RegisButtonSubmit from "@/common/regis_button_submit";
-import { API } from "@/functions/api";
 import Loading from "@/common/Loading";
 
 const Main = Styled.div`
@@ -36,30 +35,37 @@ const ForgotPassword = () => {
             method: 'POST',
             url: `${API}/user-password_forgot`,
             headers: {
-                api_key: baseKeyApi
+                'api-key': KEY
             },
             data: data
         }
+        console.log('key: '+ process.env.baseKeyAPI)
         axios(config)
             .then((res) => {
                 console.log(res.data)
+                setSubmitLoading(false);
                 switch (res.data.status) {
                     case true:
                         setAttn(res.data.msg);
-                        router.push('/login');
+                        //router.push('/login');
                         break;
                     default:
                         setAttn(res.data.msg);
-                        setSubmitLoading(false);
+                        
                         setSubmitDisable(true);
                         setTimeout(()=> {setSubmitDisable(false);}, 5000);
                         break;
                 }
             })
             .catch((err) => {
+                setSubmitLoading(false);
                 console.log('err: API user-password');
-                if (err.response.status === 401 || err.response.status === 402) {
-                    router.push('/login');
+                if (err.response) {
+                    if (err.response.status === 401 || err.response.status === 402) {
+                        router.push('/login');
+                        return;
+                    }
+                    return;
                 }
             })
     }

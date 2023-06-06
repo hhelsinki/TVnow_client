@@ -4,7 +4,7 @@ import axios from "axios";
 import RegisStep from "@/common/regis_step";
 import RegisButtonSubmit from "@/common/regis_button_submit";
 import { useRouter } from "next/navigation";
-import { API, baseKeyApi } from "@/functions/api";
+import { API, KEY } from "@/functions/api";
 import Loading from "@/common/Loading";
 
 interface Actives {
@@ -68,7 +68,6 @@ export default function RegisterIII() {
 
     const handleValidateGiftcard = async () => {
         setSubmitLoading(true);
-
         let code: string = values.paycode.replaceAll('-', '');
         const data = {
             giftcard_code: code
@@ -77,7 +76,7 @@ export default function RegisterIII() {
             method: 'POST',
             url: `${API}/regis-giftcard_check`,
             headers: {
-                api_key: baseKeyApi
+                'api-key': KEY
             },
             data: data
         }
@@ -89,7 +88,6 @@ export default function RegisterIII() {
                     .then((res) => {
                         //console.log(res.data);
                         setSubmitLoading(false);
-                        
                         switch (res.data.status) {
                             case true:
                                 setGiftcardCheck('✅️');
@@ -102,9 +100,10 @@ export default function RegisterIII() {
                                 break;
                         }
                     })
-                    .catch((err) => { console.log('err: API check-giftcard') })
+                    .catch((err) => { setSubmitLoading(false); console.log('err: API check-giftcard') })
                 break;
             case false: default:
+                setSubmitLoading(false);
                 setGiftcardCheck('❌️');
                 sessionStorage.removeItem('Payment');
                 break;
@@ -125,7 +124,7 @@ export default function RegisterIII() {
                 method: 'POST',
                 url: `${API}/regis-giftcard`,
                 headers: {
-                    api_key: baseKeyApi
+                    'api-key': KEY
                 },
                 data: data
             }

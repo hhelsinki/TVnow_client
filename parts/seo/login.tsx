@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from '/styles/login.module.scss';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { API, baseKeyApi } from '@/functions/api';
+import { API, KEY } from '@/functions/api';
 import { useRouter } from 'next/router';
 import { query_path } from '@/functions/query';
 
@@ -37,7 +37,7 @@ const LoginSEO = () => {
             method: 'POST',
             url: `${API}/login`,
             headers: {
-                api_key: baseKeyApi
+                'api-key': KEY
             },
             data: data
         }
@@ -47,7 +47,7 @@ const LoginSEO = () => {
                 switch (res.data.status) {
                     case true:
                         setValues({ ...values, attn: '' });
-                        let contentPath:string = '';
+                        let contentPath: string = '';
 
                         if (router.pathname.includes('shows')) {
                             contentPath = 'contents_show';
@@ -55,7 +55,7 @@ const LoginSEO = () => {
                         else {
                             contentPath = 'contents_movie';
                         }
-                        
+
                         Cookies.set('TVnow_Login_Token', res.data.data, { sameSite: 'strict' });
                         router.push(`../${contentPath}?n=${query}${contentType}`);
                         //console.log(`../${contentPath}?n=${query}${contentType}`);
@@ -78,7 +78,7 @@ const LoginSEO = () => {
 
         //Login Logout
         let authToken = Cookies.get('TVnow_Login_Token');
-        let contentPath:string = '';
+        let contentPath: string = '';
 
         if (authToken) {
             if (router.pathname.includes('shows')) {

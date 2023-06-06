@@ -1,5 +1,4 @@
-import { API } from '@/functions/api';
-import { baseKeyApi } from '@/functions/api';
+import { API, KEY } from '@/functions/api';
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import Cookies from 'js-cookie';
 
@@ -14,8 +13,7 @@ export const userContent = createApi({
                 url: `content/${name}`,
                 method: 'GET',
                 headers: {
-                    api_key: 'somekey',
-                    user_token: Cookies.get('TVnow_Login_Token')
+                    'api-key': KEY
                 }
             })
         })
@@ -31,10 +29,12 @@ export const userProfile = createApi({
     endpoints: (build) => ({
         getUserProfile: build.query({
             query: () => ({
-                url: '/user-profile', method: 'GET', headers: {
-                    api_key: baseKeyApi,
-                    user_token: Cookies.get('TVnow_Login_Token')
-                }
+                method: 'GET',
+                url: '/user-profile', 
+                headers: {
+                    'api-key': KEY,
+                    'user-token': Cookies.get('TVnow_Login_Token')
+                    }
             })
         })
     })

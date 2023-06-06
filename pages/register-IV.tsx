@@ -3,8 +3,9 @@ import styled from '/styles/register.module.scss';
 import axios from "axios";
 import RegisStep from "@/common/regis_step";
 import RegisButtonSubmit from "@/common/regis_button_submit";
-import { API, baseKeyApi } from "@/functions/api";
+import { API, KEY } from "@/functions/api";
 import { useRouter } from "next/navigation";
+import Loading from "@/common/Loading";
 
 interface Values {
     payment: string,
@@ -24,11 +25,13 @@ export default function RegisterIV() {
     });
     const [user, setUser] = useState<User>({
         email: '', plan: '', username: ''
-    })
+    });
+    const [isSubmitLoading, setSubmitLoading] = useState<boolean>(false);
     const [isDisable, setDisable] = useState<boolean>(true);
     let router = useRouter();
 
     const handlePaycode = async () => {
+        setSubmitLoading(true);
         const data = {
             email_used: sessionStorage.getItem('Email')
         }
@@ -36,13 +39,14 @@ export default function RegisterIV() {
             url: `${API}/regis-credential`,
             method: 'POST',
             headers: {
-                api_key: baseKeyApi
+                'api-key': KEY
             },
             data: data
         }
         await axios(config)
             .then((res) => {
-                console.log(res.data)
+                console.log(res.data);
+                setSubmitLoading(false);
                 switch (res.data.status) {
                     case true:
                         setValues({ payment: res.data.data.payment, paycode: res.data.data.code });
@@ -52,10 +56,11 @@ export default function RegisterIV() {
                         break;
                 }
             })
-            .catch((err) => { console.log(err); console.log('err: API get-email_giftcard'); })
+            .catch((err) => { setSubmitLoading(false); console.log('err: API get-email_giftcard'); })
     }
 
     const handleSubmit = async (e: any) => {
+        setSubmitLoading(true);
         e.preventDefault();
         //insert all data to db
 
@@ -80,19 +85,21 @@ export default function RegisterIV() {
             url: `${API}/regis-submit`,
             method: 'POST',
             headers: {
-                api_key: baseKeyApi
+                'api-key': KEY
             },
             data: data
         }
         await axios(config)
             .then((res) => {
                 console.log(res.data);
+                setSubmitLoading(false);
                 setDisable(false);
                 setAttn(res.data.msg);
                 sessionStorage.clear();
             })
             .catch((err) => { 
-                console.log('err: API regis-submit')  
+                setSubmitLoading(false);
+                console.log('err: API regis-submit');  
             })
     }
 
@@ -136,7 +143,10 @@ export default function RegisterIV() {
                         <RegisButtonSubmit disabled={isDisable} />
                     </form>
                     <div className="div-ghost"></div>
+                    
                 </section>
+
+                {isSubmitLoading && (<Loading/>)}
             </main>
 
             <footer className={`${styled['regis__footer']} font-ss bg-grey`}>

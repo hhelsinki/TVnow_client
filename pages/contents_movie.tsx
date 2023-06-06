@@ -9,7 +9,7 @@ import { scrollInvertXrelated, scrollXrelated } from "@/functions/scrollX";
 import { query_path } from "@/functions/query";
 import { ContentHeadlineMovie } from "@/parts/movie";
 import YouTube, { YouTubeProps } from 'react-youtube';
-import { API, baseKeyApi } from "@/functions/api";
+import { API, KEY } from "@/functions/api";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { toggleWishlist } from "@/redux/wishlist/wishlistSlice";
@@ -69,8 +69,8 @@ const Contents = () => {
             method: 'GET',
             url: `${API}/movies/${name}`,
             headers: {
-                api_key: baseKeyApi,
-                user_token: Cookies.get('TVnow_Login_Token')
+                'api-key': KEY,
+                'user-token': Cookies.get('TVnow_Login_Token')
             }
         }
         
@@ -109,9 +109,9 @@ const Contents = () => {
         const config = {
             method: 'GET',
             url: `${API}/list-favourite?title=${name}`,
-            headers: {
-                api_key: baseKeyApi,
-                user_token: Cookies.get('TVnow_Login_Token')
+            headers:  {
+                'api-key': KEY,
+                'user-token': Cookies.get('TVnow_Login_Token')
             }
         }
         await axios(config)
@@ -135,11 +135,14 @@ const Contents = () => {
             })
             .catch((err) => { 
                 console.log('err API: list-favourite');
-                if (err.response.status === 401 || err.response.status === 402) {
-                    Cookies.set('TVnow_Login_Token', '', { sameSite: 'strict' });
-                    router.push('/login');
+                if (err.response) {
+                    if (err.response.status === 401 || err.response.status === 402) {
+                        Cookies.set('TVnow_Login_Token', '', { sameSite: 'strict' });
+                        router.push('/login');
+                        return;
+                    }
                     return;
-                } 
+                }
             })
     }
     const addWishList = async () => {
@@ -151,8 +154,8 @@ const Contents = () => {
             method: 'POST',
             url: `${API}/list-favourite`,
             headers: {
-                api_key: baseKeyApi,
-                user_token: Cookies.get('TVnow_Login_Token')
+                'api-key': KEY,
+                'user-token': Cookies.get('TVnow_Login_Token')
             },
             data: data
         }
