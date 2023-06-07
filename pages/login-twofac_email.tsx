@@ -24,6 +24,7 @@ const RegisterVerify = () => {
     let searchParams = useSearchParams();
 
     const handleSubmit = async () => {
+        //e.preventDefault();
         let user: string = searchParams.get('user');
         let token: string = searchParams.get('token');
         //url client = http://localhost:3000/login-twofac_email?user=${user_email}&token=${user_token}
@@ -41,6 +42,7 @@ const RegisterVerify = () => {
             },
             data: data
         }
+
         await axios(config)
             .then((res) => {
                 console.log(res.data)
@@ -65,7 +67,24 @@ const RegisterVerify = () => {
                 }
             })
 
-        return;
+    }
+
+    const handleKeyUp = () => {
+        if (digit.length === 6) {
+            handleSubmit();
+            return;
+        } else {
+            return;
+        }
+    }
+    const handleKeyDown = (e: any) => {
+        switch (e.code) {
+            case 'ControlLeft': case 'ControlRight': case 'KeyV':
+                location.reload();
+                break
+            default:
+                break;
+        }
     }
 
     useEffect(() => {
@@ -95,19 +114,20 @@ const RegisterVerify = () => {
                 <section className={`rel ${styled['regis__motion']} div-center bg-white`}>
                     <h1 className="txt-center">2 Factor Login</h1>
 
-                    <form onSubmit={(e) => e.preventDefault()} className={`${styled['regis__twofac']} padd-default div-center`}>
+                    <form onKeyUp={handleKeyUp} onKeyDown={handleKeyDown} className={`${styled['regis__twofac']} padd-default div-center`}>
                         <label className={styled['regis__form-label']}>Enter 6 Digit Code</label><br /><br />
                         <VerificationInput
                             length={6}
                             validChars="0-9"
                             onChange={setDigit}
-                            onComplete={handleSubmit}
                             classNames={{
                                 character: "twofactor-input"
                             }}
+
                         />
                     </form>
                     <h5 className="txt-center"><i>Only 3 mistake is allowed.</i></h5>
+                    <h4 className="txt-center col-red">Ctrl + V Copy and Paste is not allowed.</h4>
                     <h3 className="txt-center col-red">{attn}</h3>
                 </section>
                 <section className="div-ghost"></section>

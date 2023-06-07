@@ -106,14 +106,14 @@ export default function Home() {
                 .catch((err) => {
                     //console.log(err);
                     console.log('err: API trending?limit=8&page=${pageTrending}');
-                    /*if (err.response) {
+                    if (err.response) {
                         if (err.response.status === 401 || err.response.status === 402) {
                             Cookies.set('TVnow_Login_Token', '', { sameSite: 'strict' });
                             router.push('/login');
                             return;
                         }
                         return;
-                    }*/
+                    }
 
                 })
         }

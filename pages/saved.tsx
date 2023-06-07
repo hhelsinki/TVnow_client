@@ -47,14 +47,7 @@ const Saved = () => {
             .catch((err) => {
                 setLoading(false); 
                 console.log('err API: /favourite-list-all');
-                /*if (err.response) {
-                    if (err.response.status === 401 || err.response.status === 402) {
-                        Cookies.set('TVnow_Login_Token', '', { sameSite: 'strict' });
-                        router.push('/login');
-                        return;
-                    }
-                    return;
-                }*/ 
+                console.log('cannot load mongodb')
             })
     }
 

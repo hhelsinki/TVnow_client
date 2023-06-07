@@ -48,7 +48,7 @@ function Settings() {
     const handleSubmitRedeemCode = async (e: any) => {
         e.preventDefault();
         const data = {
-            code: redeemCode.values
+            code: redeemCode.values.replaceAll('-','')
         }
         const config = {
             url: `${API}/user-redeem`,
@@ -62,6 +62,14 @@ function Settings() {
         await axios(config)
             .then((res) => {
                 console.log(res.data)
+                setRedeemCode({...redeemCode, msg: res.data.msg});
+                switch(res.data.status) {
+                    case true:
+                        location.reload();
+                        break;
+                    case false: default:
+                        break;
+                }
             })
             .catch((err) => {
                 console.log('err: API user-redeem');
@@ -369,7 +377,7 @@ function Settings() {
                     <div className="div-ghost"></div>
                 </section>
                 <section className="footer-settings--footer">
-                    <div className="div-center txt-center cursor">LOGOUT</div>
+                    <div onClick={() => setLogout(!isLogout)} className="div-center txt-center cursor">LOGOUT</div>
                 </section>
             </article>
             {/*modal payment */}
@@ -403,7 +411,7 @@ function Settings() {
                     <div className="div-ghost"></div>
                 </section>
                 <section className="footer-settings--footer">
-                    <div className="div-center txt-center cursor">LOGOUT</div>
+                    <div onClick={() => setLogout(!isLogout)} className="div-center txt-center cursor">LOGOUT</div>
                 </section>
             </article>
             {/*modal advance setting */}
@@ -440,7 +448,7 @@ function Settings() {
                     <div className="div-ghost"></div>
                 </section>
                 <section className="footer-settings--footer">
-                    <div className="div-center txt-center cursor">LOGOUT</div>
+                    <div onClick={() => setLogout(!isLogout)} className="div-center txt-center cursor">LOGOUT</div>
                 </section>
             </article>
             {/*modal change password */}
@@ -474,7 +482,7 @@ function Settings() {
                     <div className="div-ghost"></div>
                 </section>
                 <section className="footer-settings--footer">
-                    <div className="div-center txt-center cursor">LOGOUT</div>
+                    <div onClick={() => setLogout(!isLogout)} className="div-center txt-center cursor">LOGOUT</div>
                 </section>
             </article>
             {/*modal 2 factor */}
@@ -515,7 +523,7 @@ function Settings() {
                     <div className="div-ghost"></div>
                 </section>
                 <section className="footer-settings--footer">
-                    <div className="div-center txt-center cursor">LOGOUT</div>
+                    <div onClick={() => setLogout(!isLogout)} className="div-center txt-center cursor">LOGOUT</div>
                 </section>
             </article>
             {/*modal policy */}
@@ -546,7 +554,7 @@ function Settings() {
                     <div className="div-ghost"></div>
                 </section>
                 <section className="footer-settings--footer">
-                    <div className="div-center txt-center cursor">LOGOUT</div>
+                    <div onClick={() => setLogout(!isLogout)} className="div-center txt-center cursor">LOGOUT</div>
                 </section>
             </article>
             {/*modal logout */}

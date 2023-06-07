@@ -43,21 +43,35 @@ export default function Login() {
         }
         await axios(config)
             .then((res) => {
-                //console.log(res.data);
+                console.log(res.data);
                 switch (res.data.status) {
                     case true:
-                        setValues({ ...values, attn: '' });
+                        if (res.data.is_twofactor) {
+                            setErrLogin(true);
+                            setValues({ ...values, attn: res.data.msg });
+                            return;
+                        }
                         Cookies.set('TVnow_Login_Token', res.data.data, { sameSite: 'strict' });
                         router.push('/home');
                         break;
                     case false: default:
+                        let epoch_time = res.data.time * 1000;
+                        var d = new Date(epoch_time);
+
+                        if (res.data.time) {
+                            setSubmitLoading(false); //submit loading is disable
+                            setValues({ ...values, attn: res.data.msg + ' ' + d.toLocaleTimeString('en-US') });
+                            setErrLogin(true);
+                            setSubmitDisable(true); //submit butt is enable
+                            setTimeout(() => { setErrLogin(false); setSubmitDisable(false); }, 3000);
+                            return;
+                        }
+
                         setSubmitLoading(false); //submit loading is disable
                         setValues({ ...values, attn: res.data.msg });
                         setErrLogin(true);
                         setSubmitDisable(true); //submit butt is enable
-                        setTimeout(()=>{setErrLogin(false); setSubmitDisable(false);}, 3000);
-                        
-                        
+                        setTimeout(() => { setErrLogin(false); setSubmitDisable(false); }, 3000);
                         break;
                 }
             }).catch((err) => {
@@ -93,14 +107,14 @@ export default function Login() {
                             <input type="text" onChange={(e) => { setValues({ ...values, username: e.target.value }) }} className={`${styled['login__input']} dp-block`} required />
                             <br />
                             <div className="rel">
-                                <  label className={`${styled['login__label']} dp-block`}>Password</label><br/>
-                                <input type={values.show_password ? 'text' : 'password'} onChange={(e: any) => setValues({ ...values, password: e.target.value })} className={`${styled['login__input']} dp-block`} required/>
-                                <img src={values.show_password ? '/eye_closed.webp' : '/eye_open.webp'} onClick={(e:any) => setValues({...values, show_password:!values.show_password})} className={`${styled['login__input-img']} abs`}/>
+                                <  label className={`${styled['login__label']} dp-block`}>Password</label><br />
+                                <input type={values.show_password ? 'text' : 'password'} onChange={(e: any) => setValues({ ...values, password: e.target.value })} className={`${styled['login__input']} dp-block`} required />
+                                <img src={values.show_password ? '/eye_closed.webp' : '/eye_open.webp'} onClick={(e: any) => setValues({ ...values, show_password: !values.show_password })} className={`${styled['login__input-img']} abs`} />
                             </div>
                             <br />
 
                             <button type='submit' disabled={isSubmitDisable} className={`${styled['login__input-submit']} dp-block bd-zero col-white cursor`}>LOG IN</button>
-                            <br/>
+                            <br />
                         </form>
                         <div className={`${styled['login__trial']} txt-center`}>
                             <p>Don't have an account? <a href='/register-I' style={{ color: 'var(--plan-pro-focus)' }}>Start a free trial</a></p>
@@ -109,8 +123,8 @@ export default function Login() {
                     </section>
                     <div className="div-ghost"></div>
                 </div>
-                {isSubmitLoading && (<Loading/>)}
-                {isErrLogin && (<Error text={values.attn}/>)}
+                {isSubmitLoading && (<Loading />)}
+                {isErrLogin && (<Error text={values.attn} />)}
 
             </main>
 

@@ -61,7 +61,7 @@ const RegisterVerify = () => {
         e.preventDefault();
         let user: string = (new URLSearchParams(location.search)).get('user');
         let token: string = (new URLSearchParams(location.search)).get('token');
-        console.log(user, token)
+        //console.log(user, token)
 
         //url client = http://localhost:3000/password-submit?user=${user_email}&token=${'user-token'}
         const data = {
@@ -73,7 +73,7 @@ const RegisterVerify = () => {
             url: `${API}/user-password`,
             headers: {
                 'api-key': KEY,
-                'user-token': Cookies.get('TVnow_Login_Token')
+                'user-token': token
                 },
             data: data
         }
@@ -82,7 +82,7 @@ const RegisterVerify = () => {
                 console.log(res.data)
                 switch (res.data.status) {
                     case true:
-                        Cookies.set('TVnow_Login_Token', '', { sameSite: 'strict' });
+                        Cookies.remove('TVnow_Login_Token');
                         router.push('/login');
                         break;
                     case false: default:
