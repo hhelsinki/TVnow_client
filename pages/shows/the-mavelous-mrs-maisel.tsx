@@ -104,7 +104,7 @@ const TheMarvelousMrsMaisel = () => {
     return (
         <>
             <Head>
-                <title>TVnow: The Mavelous Mrs Maisel</title>
+                <title>TVnow | The Mavelous Mrs Maisel</title>
                 <meta name="description" content="Watch The Mavelous Mrs Maisel Season 1, Watch The Mavelous Mrs Maisel Season 2, Watch The Mavelous Mrs Maisel Season 3, Watch The Mavelous Mrs Maisel Season 4" />
             </Head>
             <HeaderSEO />

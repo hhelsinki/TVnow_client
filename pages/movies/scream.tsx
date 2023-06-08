@@ -84,7 +84,7 @@ const Scream = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Scream</title>
+                <title>TVnow | Scream</title>
                 <meta name="description" content="Watch Scream Movie" />
             </Head>
             <HeaderSEO />

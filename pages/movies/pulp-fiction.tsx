@@ -84,7 +84,7 @@ const PulpFiction = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Pulp Fiction</title>
+                <title>TVnow | Pulp Fiction</title>
                 <meta name="description" content="Watch Pulp Fiction Movie" />
             </Head>
             <HeaderSEO />

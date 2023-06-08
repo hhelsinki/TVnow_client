@@ -84,7 +84,7 @@ const Lincoln = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Lincoln</title>
+                <title>TVnow | Lincoln</title>
                 <meta name="description" content="Watch Lincoln Movie" />
             </Head>
             <HeaderSEO />

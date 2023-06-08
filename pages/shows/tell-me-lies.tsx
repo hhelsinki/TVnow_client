@@ -104,7 +104,7 @@ const TellMeLies = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Tell Me Lies</title>
+                <title>TVnow | Tell Me Lies</title>
                 <meta name="description" content="Watch Tell Me Lies Season 1" />
             </Head>
             <HeaderSEO />

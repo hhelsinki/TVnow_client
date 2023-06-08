@@ -84,7 +84,7 @@ const SonicTheHedgehogII = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Sonic the Hedgehog 2</title>
+                <title>TVnow | Sonic the Hedgehog 2</title>
                 <meta name="description" content="Watch Sonic the Hedgehog 2 Movie" />
             </Head>
             <HeaderSEO />

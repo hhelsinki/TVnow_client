@@ -84,7 +84,7 @@ const SchindlersList = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Schindler's List</title>
+                <title>TVnow | Schindler's List</title>
                 <meta name="description" content="Watch Schindlers List Movie" />
             </Head>
             <HeaderSEO />

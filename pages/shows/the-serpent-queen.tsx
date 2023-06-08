@@ -104,7 +104,7 @@ const TheSerpentQueen = () => {
     return (
         <>
             <Head>
-                <title>TVnow: The Serpent Queen</title>
+                <title>TVnow | The Serpent Queen</title>
                 <meta name="description" content="Watch The Serpent Queen Season 1" />
             </Head>
             <HeaderSEO />

@@ -84,7 +84,7 @@ const StarWarsEPVTheEmpireStrikesBack = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Star Wars: Episode V - The Empire Strikes Back</title>
+                <title>TVnow | Star Wars: Episode V - The Empire Strikes Back</title>
                 <meta name="description" content="Watch Star Wars: Episode V - The Empire Strikes Back Movie" />
             </Head>
             <HeaderSEO />

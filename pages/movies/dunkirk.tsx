@@ -84,7 +84,7 @@ const Dunkirk = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Dunkirk</title>
+                <title>TVnow | Dunkirk</title>
                 <meta name="description" content="Watch Dunkirk Movie" />
             </Head>
             <HeaderSEO />

@@ -84,7 +84,7 @@ const CallMeByYourName = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Call Me By Your Name</title>
+                <title>TVnow | Call Me By Your Name</title>
                 <meta name="description" content="Watch Call Me By Your Name Movie" />
             </Head>
             <HeaderSEO />

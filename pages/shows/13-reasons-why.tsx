@@ -104,7 +104,7 @@ const ThirteenReasonsWhy = () => {
     return (
         <>
             <Head>
-                <title>TVnow: 13 Reasons Why</title>
+                <title>TVnow | 13 Reasons Why</title>
                 <meta name="description" content="Watch 13 Reasons Why Season 1, Watch 13 Reasons Why Season 2, Watch 13 Reasons Why Season 3, Watch 13 Reasons Why Season 4" />
             </Head>
             <HeaderSEO />

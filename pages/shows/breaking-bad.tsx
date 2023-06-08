@@ -104,7 +104,7 @@ const BreakingBad = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Breaking Bad</title>
+                <title>TVnow | Breaking Bad</title>
                 <meta name="description" content="Watch Breaking Bad Season 1, Watch Breaking Bad Season 2, Watch Breaking Bad Season 3, Watch Breaking Bad Season 4" />
             </Head>
             <HeaderSEO />

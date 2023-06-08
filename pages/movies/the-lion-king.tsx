@@ -84,7 +84,7 @@ const TheLionKing = () => {
     return (
         <>
             <Head>
-                <title>TVnow: The Lion King</title>
+                <title>TVnow | The Lion King</title>
                 <meta name="description" content="Watch The Lion King Movie" />
             </Head>
             <HeaderSEO />

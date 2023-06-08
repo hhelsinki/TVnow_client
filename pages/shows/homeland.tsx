@@ -104,7 +104,7 @@ const Homeland = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Homeland</title>
+                <title>TVnow | Homeland</title>
                 <meta name="description" content="Watch Homeland Season 1, Watch Homeland Season 2, Watch Homeland Season 3, Watch Homeland Season 4" />
             </Head>
             <HeaderSEO />

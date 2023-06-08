@@ -84,7 +84,7 @@ const TheDarkKnight = () => {
     return (
         <>
             <Head>
-                <title>TVnow: The Dark Knight</title>
+                <title>TVnow | The Dark Knight</title>
                 <meta name="description" content="Watch The Dark Knight Movie" />
             </Head>
             <HeaderSEO />

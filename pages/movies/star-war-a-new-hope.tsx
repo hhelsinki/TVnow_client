@@ -84,7 +84,7 @@ const StarWarANewHope = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Star War: A New Hope</title>
+                <title>TVnow | Star War: A New Hope</title>
                 <meta name="description" content="Watch Star War: A New Hope Movie" />
             </Head>
             <HeaderSEO />

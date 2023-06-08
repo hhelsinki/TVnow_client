@@ -104,7 +104,7 @@ const PrisonBreak = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Prison Break</title>
+                <title>TVnow | Prison Break</title>
                 <meta name="description" content="Watch Prison Break Season 1, Watch Prison Break Season 2, Watch Prison Break Season 3, Watch Prison Break Season 4" />
             </Head>
             <HeaderSEO />

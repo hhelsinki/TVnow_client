@@ -84,7 +84,7 @@ const TheShawshankRedemption = () => {
     return (
         <>
             <Head>
-                <title>TVnow: The Shawshank Redemption</title>
+                <title>TVnow | The Shawshank Redemption</title>
                 <meta name="description" content="Watch The Shawshank Redemption Movie" />
             </Head>
             <HeaderSEO />

@@ -104,7 +104,7 @@ const ChicagoPD = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Chicago PD</title>
+                <title>TVnow | Chicago PD</title>
                 <meta name="description" content="Watch Chicago PD Season 1, Watch Chicago PD Season 2, Watch Chicago PD Season 3, Watch Chicago PD Season 4" />
             </Head>
             <HeaderSEO />

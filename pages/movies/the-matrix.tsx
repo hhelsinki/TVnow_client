@@ -84,7 +84,7 @@ const TheMatrix = () => {
     return (
         <>
             <Head>
-                <title>TVnow: The Matrix</title>
+                <title>TVnow | The Matrix</title>
                 <meta name="description" content="Watch The Matrix Movie" />
             </Head>
             <HeaderSEO />

@@ -84,7 +84,7 @@ const TopGunMaverick = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Top Gun: Maverick</title>
+                <title>TVnow | Top Gun: Maverick</title>
                 <meta name="description" content="Watch Top Gun: Maverick Movie" />
             </Head>
             <HeaderSEO />

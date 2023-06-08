@@ -84,7 +84,7 @@ const Titanic = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Titanic</title>
+                <title>TVnow | Titanic</title>
                 <meta name="description" content="Watch Titanic Movie" />
             </Head>
             <HeaderSEO />

@@ -104,7 +104,7 @@ const LawAndOrder = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Law & Order: Special Victims Unit</title>
+                <title>TVnow | Law & Order: Special Victims Unit</title>
                 <meta name="description" content="Watch Law & Order: Special Victims Unit Season 1, Watch Law & Order: Special Victims Unit Season 2, Watch Law & Order: Special Victims Unit Season 3, Watch Law & Order: Special Victims Unit Season 4" />
             </Head>
             <HeaderSEO />

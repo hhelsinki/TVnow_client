@@ -84,7 +84,7 @@ const DrStrangeInTheMultiverseOfMadness = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Doctor Strange: in the Multiverse of Madness</title>
+                <title>TVnow | Doctor Strange: in the Multiverse of Madness</title>
                 <meta name="description" content="Watch Doctor Strange: in the Multiverse of Madness Movie" />
             </Head>
             <HeaderSEO />

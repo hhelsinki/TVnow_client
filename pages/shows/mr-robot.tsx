@@ -104,7 +104,7 @@ const MrRobot = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Mr Robot</title>
+                <title>TVnow | Mr Robot</title>
                 <meta name="description" content="Watch Mr Robot Season 1, Watch Mr Robot Season 2, Watch Mr Robot Season 3, Watch Mr Robot Season 4" />
             </Head>
             <HeaderSEO />

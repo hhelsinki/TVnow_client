@@ -24,7 +24,7 @@ interface State {
     country: string
 }
 
-const LORTheTwoTowers = () => {
+const TwelveAngryMen = () => {
     const router = useRouter();
     const loginSeo = useSelector((state:any) => state.loginSeo);
     //const query = router.pathname.replace(query_path, '');
@@ -84,8 +84,8 @@ const LORTheTwoTowers = () => {
     return (
         <>
             <Head>
-                <title>TVnow | The Lord of The Rings: The Two Towers</title>
-                <meta name="description" content="Watch The Lord of The Rings: The Two Towers Movie" />
+                <title>TVnow | 12 Angry Men</title>
+                <meta name="description" content="Watch 12 Angry Men Movie" />
             </Head>
             <HeaderSEO />
             <main className="main scroll-y">
@@ -127,4 +127,4 @@ const LORTheTwoTowers = () => {
     );
 }
 
-export default LORTheTwoTowers;
+export default TwelveAngryMen;

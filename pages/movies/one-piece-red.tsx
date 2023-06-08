@@ -84,7 +84,7 @@ const OnePieceRed = () => {
     return (
         <>
             <Head>
-                <title>TVnow: One Piece: Red</title>
+                <title>TVnow | One Piece: Red</title>
                 <meta name="description" content="Watch One Piece: Red Movie" />
             </Head>
             <HeaderSEO />

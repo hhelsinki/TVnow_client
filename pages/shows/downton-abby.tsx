@@ -104,7 +104,7 @@ const DowntonAbby = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Downton Abby</title>
+                <title>TVnow | Downton Abby</title>
                 <meta name="description" content="Watch Downton Abby Season 1, Watch Downton Abby Season 2, Watch Downton Abby Season 3, Watch Downton Abby Season 4" />
             </Head>
             <HeaderSEO />

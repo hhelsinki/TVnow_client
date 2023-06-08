@@ -84,7 +84,7 @@ const Interstellar = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Interstellar</title>
+                <title>TVnow | Interstellar</title>
                 <meta name="description" content="Watch Interstellar Movie" />
             </Head>
             <HeaderSEO />

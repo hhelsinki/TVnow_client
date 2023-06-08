@@ -84,7 +84,7 @@ const TheGodfatherPartII = () => {
     return (
         <>
             <Head>
-                <title>TVnow: The Godfather Part II</title>
+                <title>TVnow | The Godfather Part II</title>
                 <meta name="description" content="Watch The Godfather Part II Movie" />
             </Head>
             <HeaderSEO />

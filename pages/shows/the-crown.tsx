@@ -104,7 +104,7 @@ const TheCrown = () => {
     return (
         <>
             <Head>
-                <title>TVnow: The Crown</title>
+                <title>TVnow | The Crown</title>
                 <meta name="description" content="Watch The Crown Season 1" />
             </Head>
             <HeaderSEO />

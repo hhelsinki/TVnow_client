@@ -104,7 +104,7 @@ const GameOfThrone = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Game of Throne</title>
+                <title>TVnow | Game of Throne</title>
                 <meta name="description" content="Watch Game of Throne Season 1, Watch Game of Throne Season 2, Watch Game of Throne Season 3, Watch Game of Throne Season 4" />
             </Head>
             <HeaderSEO />

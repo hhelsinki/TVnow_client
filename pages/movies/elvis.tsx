@@ -84,7 +84,7 @@ const Elvis = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Elvis</title>
+                <title>TVnow | Elvis</title>
                 <meta name="description" content="Watch Elvis Movie" />
             </Head>
             <HeaderSEO />

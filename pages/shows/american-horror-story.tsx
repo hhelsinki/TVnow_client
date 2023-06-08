@@ -104,7 +104,7 @@ const AmericanHorrorStory = () => {
     return (
         <>
             <Head>
-                <title>TVnow: American Horror Story</title>
+                <title>TVnow | American Horror Story</title>
                 <meta name="description" content="Watch American Horror Story Season 1, Watch American Horror Story Season 2, Watch American Horror Story Season 3, Watch American Horror Story Season 4" />
             </Head>
             <HeaderSEO />

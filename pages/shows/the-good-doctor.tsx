@@ -104,7 +104,7 @@ const TheGoodDoctor = () => {
     return (
         <>
             <Head>
-                <title>TVnow: The Good Doctor</title>
+                <title>TVnow | The Good Doctor</title>
                 <meta name="description" content="Watch The Good Doctor Season 1, Watch The Good Doctor Season 2, Watch The Good Doctor Season 3, Watch The Good Doctor Season 4" />
             </Head>
             <HeaderSEO />

@@ -104,7 +104,7 @@ const Hannibal = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Hannibal</title>
+                <title>TVnow | Hannibal</title>
                 <meta name="description" content="Watch Hannibal Season 1, Watch Hannibal Season 2, Watch Hannibal Season 3" />
             </Head>
             <HeaderSEO />

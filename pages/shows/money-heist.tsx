@@ -104,7 +104,7 @@ const MoneyHeist = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Money Heist</title>
+                <title>TVnow | Money Heist</title>
                 <meta name="description" content="Watch Money Heist Season 1, Watch Money Heist Season 2, Watch Money Heist Season 3, Watch Money Heist Season 4" />
             </Head>
             <HeaderSEO />

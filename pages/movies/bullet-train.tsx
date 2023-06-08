@@ -84,7 +84,7 @@ const BulletTrain = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Bullet Train</title>
+                <title>TVnow | Bullet Train</title>
                 <meta name="description" content="Watch Bullet Train Movie" />
             </Head>
             <HeaderSEO />

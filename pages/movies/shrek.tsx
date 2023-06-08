@@ -85,7 +85,7 @@ const Shrek = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Shrek</title>
+                <title>TVnow | Shrek</title>
                 <meta name="description" content="Watch Shrek Movie" />
             </Head>
             <HeaderSEO />

@@ -84,7 +84,7 @@ const MinionTheRiseOfGru = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Minion: The Rise of Gru</title>
+                <title>TVnow | Minion: The Rise of Gru</title>
                 <meta name="description" content="Watch Minion: The Rise of Gru Movie" />
             </Head>
             <HeaderSEO />

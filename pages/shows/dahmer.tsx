@@ -104,7 +104,7 @@ const Dahmer = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Dahmer - Monster: The Jeffrey Dahmer Story</title>
+                <title>TVnow | Dahmer - Monster: The Jeffrey Dahmer Story</title>
                 <meta name="description" content="Watch Dahmer - Monster: The Jeffrey Dahmer Story Season 1" />
             </Head>
             <HeaderSEO />

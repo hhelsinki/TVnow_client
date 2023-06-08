@@ -104,7 +104,7 @@ const Homecoming = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Homecoming</title>
+                <title>TVnow | Homecoming</title>
                 <meta name="description" content="Watch Homecoming Season 1" />
             </Head>
             <HeaderSEO />

@@ -84,7 +84,7 @@ const DCLeagueOfSuperPets = () => {
     return (
         <>
             <Head>
-                <title>TVnow: DC League of Super Pets</title>
+                <title>TVnow | DC League of Super Pets</title>
                 <meta name="description" content="Watch DC League of Super Pets Movie" />
             </Head>
             <HeaderSEO />

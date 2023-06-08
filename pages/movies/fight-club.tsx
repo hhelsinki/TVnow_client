@@ -84,7 +84,7 @@ const FightClub = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Fight Club</title>
+                <title>TVnow | Fight Club</title>
                 <meta name="description" content="Watch Fight Club Movie" />
             </Head>
             <HeaderSEO />

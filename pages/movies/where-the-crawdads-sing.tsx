@@ -84,7 +84,7 @@ const WhereTheCrawdadsSing = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Where The Crawdads Sing</title>
+                <title>TVnow | Where The Crawdads Sing</title>
                 <meta name="description" content="Watch Where The Crawdads Sing Movie" />
             </Head>
             <HeaderSEO />

@@ -104,7 +104,7 @@ const TheGoodWife = () => {
     return (
         <>
             <Head>
-                <title>TVnow: The Good Wife</title>
+                <title>TVnow | The Good Wife</title>
                 <meta name="description" content="Watch The Good Wife Season 1, Watch The Good Wife Season 2, Watch The Good Wife Season 3, Watch The Good Wife Season 4" />
             </Head>
             <HeaderSEO />

@@ -143,7 +143,7 @@ const RegisterVerify = () => {
                     <li>Privacy Policy</li>
                     <li>Terms of Use</li>
                     <li>Do Not Sell My Personal Information</li>
-                    <a href='/'><li>© 2022 TVnow</li></a>
+                    <a href='/'><li>© 2023 TVnow</li></a>
                 </ul>
             </footer>
         </div>

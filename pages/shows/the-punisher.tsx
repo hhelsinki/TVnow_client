@@ -104,7 +104,7 @@ const ThePunisher = () => {
     return (
         <>
             <Head>
-                <title>TVnow: The Punisher</title>
+                <title>TVnow | The Punisher</title>
                 <meta name="description" content="Watch The Punisher Season 1, Watch The Punisher Season 2" />
             </Head>
             <HeaderSEO />

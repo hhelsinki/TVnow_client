@@ -104,7 +104,7 @@ const TheAmericans = () => {
     return (
         <>
             <Head>
-                <title>TVnow: The Americans</title>
+                <title>TVnow | The Americans</title>
                 <meta name="description" content="Watch The Americans Season 1, Watch The Americans Season 2, Watch The Americans Season 3, Watch The Americans Season 4" />
             </Head>
             <HeaderSEO />

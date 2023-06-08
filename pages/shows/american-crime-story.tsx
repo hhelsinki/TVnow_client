@@ -104,7 +104,7 @@ const AmericanCrimeStory = () => {
     return (
         <>
             <Head>
-                <title>TVnow: American Crime Story</title>
+                <title>TVnow | American Crime Story</title>
                 <meta name="description" content="Watch American Crime Story Season 1, Watch American Crime Story Season 2, Watch American Crime Story Season 3" />
             </Head>
             <HeaderSEO />

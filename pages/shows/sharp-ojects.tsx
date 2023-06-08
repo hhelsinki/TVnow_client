@@ -104,7 +104,7 @@ const SharpObjects = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Sharp Objects</title>
+                <title>TVnow | Sharp Objects</title>
                 <meta name="description" content="Watch Sharp Objects Season 1" />
             </Head>
             <HeaderSEO />

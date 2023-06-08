@@ -84,7 +84,7 @@ const Inception = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Inception</title>
+                <title>TVnow | Inception</title>
                 <meta name="description" content="Watch Inception Movie" />
             </Head>
             <HeaderSEO />

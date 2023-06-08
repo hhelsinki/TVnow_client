@@ -84,7 +84,7 @@ const Parasite = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Parasite</title>
+                <title>TVnow | Parasite</title>
                 <meta name="description" content="Watch Parasite Movie" />
             </Head>
             <HeaderSEO />

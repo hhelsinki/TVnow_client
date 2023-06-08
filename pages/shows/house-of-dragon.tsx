@@ -104,7 +104,7 @@ const HouseOfDragon = () => {
     return (
         <>
             <Head>
-                <title>TVnow: House of Dragon</title>
+                <title>TVnow | House of Dragon</title>
                 <meta name="description" content="Watch House of Dragon Season 1, Watch House of Dragon Season 2" />
             </Head>
             <HeaderSEO />

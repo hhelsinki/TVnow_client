@@ -104,7 +104,7 @@ const ASeriesOfUnfortunateEvents = () => {
     return (
         <>
             <Head>
-                <title>TVnow: A Series of Unfortunate Events</title>
+                <title>TVnow | A Series of Unfortunate Events</title>
                 <meta name="description" content="Watch A Series of Unfortunate Events Season 1, Watch A Series of Unfortunate Events Season 2, Watch A Series of Unfortunate Events Season 3, Watch A Series of Unfortunate Events Season 4" />
             </Head>
             <HeaderSEO />

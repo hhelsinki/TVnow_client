@@ -84,7 +84,7 @@ const ATimeInHollywood = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Once Upon a Time...in Hollywood</title>
+                <title>TVnow | Once Upon a Time...in Hollywood</title>
                 <meta name="description" content="Watch Once Upon a Time...in Hollywood Movie" />
             </Head>
             <HeaderSEO />

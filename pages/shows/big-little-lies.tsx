@@ -104,7 +104,7 @@ const BigLittleLies = () => {
     return (
         <>
             <Head>
-                <title>TVnow: Big Little Lies</title>
+                <title>TVnow | Big Little Lies</title>
                 <meta name="description" content="Watch Big Little Lies Season 1, Watch Big Little Lies Season 2" />
             </Head>
             <HeaderSEO />

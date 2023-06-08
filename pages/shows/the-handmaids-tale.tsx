@@ -104,7 +104,7 @@ const TheHandmaidsTale = () => {
     return (
         <>
             <Head>
-                <title>TVnow: The Handmaid&apos;s Tale</title>
+                <title>TVnow | The Handmaid&apos;s Tale</title>
                 <meta name="description" content="Watch The Handmaid's Tale Season 1, Watch The Handmaid's Tale Season 2, Watch The Handmaid's Tale Season 3, Watch The Handmaid's Tale Season 4" />
             </Head>
             <HeaderSEO />

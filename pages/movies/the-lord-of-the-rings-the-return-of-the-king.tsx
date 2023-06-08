@@ -84,7 +84,7 @@ const LORTheReturnOfTheKing = () => {
     return (
         <>
             <Head>
-                <title>TVnow: The Lord of The Rings: The Return of The King</title>
+                <title>TVnow | The Lord of The Rings: The Return of The King</title>
                 <meta name="description" content="Watch The Lord of The Rings: The Return of The King Movie" />
             </Head>
             <HeaderSEO />
