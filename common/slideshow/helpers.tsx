@@ -115,7 +115,7 @@ const showDefaultIndicator = (
             <button
                 type="button"
                 className={`each-slideshow-indicator ${isCurrentPageActive ? 'active' : ''}`}
-                style={{background:'#fff'}}
+                //style={{background:'#fff'}}
                 {...indicatorProps}
             />
         </li>

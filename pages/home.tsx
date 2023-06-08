@@ -328,7 +328,14 @@ export default function Home() {
                             <Link href="/category"><li className="dp-inline-block col-grey">Category</li></Link>
                         </ul>
                     </section>
+                    {isLoading &&(<section data-name='loading content' className="rel">
+                        <div className="loading_content-bg bg-second">
+                            <div className="loading_content"></div>
+                        </div>
+                    </section>)}
+
                     <section className={styled["home__intro-img"]}>
+
                         <Slide indicators={true} ref={slideRef}>
                             <div style={{ textAlign: 'center', fontSize: '30px' }}>
                                 <Link href={showcase.one_url}><img src={`${API}/${showcase.one}`} className="img" /></Link>
@@ -343,6 +350,7 @@ export default function Home() {
                                 <Link href={showcase.four_url}><img src={`${API}/${showcase.four}`} className="img" /></Link>
                             </div>
                         </Slide>
+
                     </section>
                     <article data-name='trending' className={`${styled['home__adjust-margin']}`}>
                         <h3>Trending</h3>
