@@ -1,3 +1,9 @@
+# About
+This project is build by Nextjs, reduxjs
+
+## Live Version
+https://auto-tvnow.site
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
