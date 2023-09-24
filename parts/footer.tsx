@@ -27,7 +27,7 @@ const Footer = () => {
                     <Link href="/home"><img src={isHomeActive? "../navi/home-active.png": "../navi/home.png"} className="div-center dp-block" /></Link>
                 </section>
                 <section className="footer-nav">
-                    <Link href="/saved"><img src={isSavedActive? "../navi/download-active.png": "../navi/download.png"} className="div-center dp-block" id={wishlist.filled ? 'navi-active': ''}/></Link>
+                    <Link href="/saved"><img src={isSavedActive? "../navi/download-active.png": "../navi/download.png"} className="div-center dp-block" id={wishlist.saved ? 'navi-active': ''}/></Link>
                 </section>
                 <section className="footer-nav">
                     <Link href="/settings"><img src="../navi/user.png" className="div-center dp-block" /></Link>

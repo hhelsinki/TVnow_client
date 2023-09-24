@@ -10,8 +10,8 @@ import { scrollInvertXep, scrollInvertXrelated, scrollInvertXss, scrollXep, scro
 import { query_path } from "@/functions/query";
 import { ContentHeadlineShow } from "@/parts/show";
 import YouTube, { YouTubeProps } from 'react-youtube';
-import { useDispatch } from "react-redux";
-import { toggleWishlist } from "@/redux/wishlist/wishlistSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {toggleWishlist, toggleSave } from "@/redux/wishlist/wishlistSlice";
 import { API, KEY } from "@/functions/api";
 import { useRouter } from "next/navigation";
 import Loading from "@/common/Loading";
@@ -31,8 +31,13 @@ interface State {
     video: string
 }
 
+interface WishlistState {
+    filled: boolean,
+    saved: boolean
+}
+
 const Contents = () => {
-    //const wishlist = useSelector((state: any) => state.wishlist);
+    const wishlist = useSelector<WishlistState>((state) => state.wishlist);
     const dispatch = useDispatch<any>();
     const [values, setValues] = useState<State>({
         title: '',
@@ -85,7 +90,7 @@ const Contents = () => {
         axios(config)
             .then((res) => {
                 setLoading(!isLoading);
-                console.log(res.data);
+                //console.log(res.data);
                 const newAllEPs: any = [];
                 const newAllSSs: any = [];
                 const newRelated: any = [];
@@ -125,42 +130,38 @@ const Contents = () => {
                 'user-token': Cookies.get('TVnow_Login_Token')
             }
         }
-        await axios(config)
-            //await axios.get('https://api.npoint.io/7ff77ebc636c71d43d6e')
-
-            .then((res) => {
-                //console.log(res.data.data)
+        try {
+            //const res = await axios.get('https://api.npoint.io/7ff77ebc636c71d43d6e')
+            const res = await axios(config);
+            console.log('loadWishlist=========', res.data.data)
                 let isFilled: boolean = res.data.data;
-                //setContentBool(!isFilled);
-                //console.log(contentBool);
+  
                 switch (isFilled) {
                     case true:
-                        setHeartFilled(!isHeartFilled);
+                        dispatch(toggleWishlist())
+                        console.log('dispatched')
                         break;
-                    case false:
-                        setHeartCount((heartCount) => heartCount += 1);
-                        break;
-                    case null: case undefined: default:
-                        setHeartCount((heartCount) => heartCount += 1);
+                    default:
+                        console.log('no dispatch, state === false')
                         break;
                 }
-            })
-            .catch((err) => {
-                console.log('err API: list-favourite');
-                if (err.response) {
-                    if (err.response.status === 401 || err.response.status === 402) {
-                        Cookies.set('TVnow_Login_Token', '', { sameSite: 'strict' });
-                        router.push('/login');
-                        return;
-                    }
+
+        } catch(err) {
+            console.log('err API: list-favourite');
+            if (err.response) {
+                if (err.response.status === 401 || err.response.status === 402) {
+                    Cookies.set('TVnow_Login_Token', '', { sameSite: 'strict' });
+                    router.push('/login');
                     return;
                 }
-            })
+                return;
+            }
+        }
     }
     const addWishList = async () => {
         const data = {
             title: name,
-            bool: !isHeartFilled
+            bool: !wishlist.filled
         }
         const config = {
             method: 'POST',
@@ -171,38 +172,16 @@ const Contents = () => {
             },
             data: data
         }
-        await axios(config)
+        if (wishlist.filled === false) {
+            dispatch(toggleSave());
+        }
+        console.log(data)
+        /*await axios(config)
             .then((res) => {
                 console.log(res.data)
             })
             .catch((err) => console.log('err API: add-favourite'))
-    }
-
-    const handleToggleWishlist = () => {
-        switch (isHeartFilled) {
-            case true:
-                if (heartCount === 0) {
-                    setHeartCount((heartCount) => heartCount += 1);
-                    setHeartFilled(!isHeartFilled);
-                }
-
-                // if heartCount = 0, disable dispatch
-                if (heartCount === 1) {
-                    setHeartFilled(!isHeartFilled);
-                    dispatch(toggleWishlist());
-
-                }
-                //send data 'false' or delete title to API mongo
-                addWishList();
-                break;
-            case false:
-                if (heartCount === 1) {
-                    setHeartFilled(!isHeartFilled);
-                    dispatch(toggleWishlist());
-                }
-                addWishList();
-                break;
-        }
+            */
     }
 
     useEffect(() => {
@@ -235,9 +214,10 @@ const Contents = () => {
                         storySubstringTb={values.story.substring(0, 200)}
                         storyPc={values.story}
                         onPlay={() => setPlay(!isPlay)}
-                        onWishlist={handleToggleWishlist}
+                        onWishlist={() => {dispatch(toggleWishlist()); addWishList();}}
                         //imgWishlist={wishlist.filled ? '../heart-filled.png': '../heart.png'}
-                        imgWishlist={isHeartFilled ? '../heart-filled.png' : '../heart.png'}
+                        //imgWishlist={isHeartFilled ? '../heart-filled.png' : '../heart.png'}
+                        imgWishlist={wishlist.filled ? '../heart-filled.png' : '../heart.png'}
                     />
                     <div onClick={() => { setPlay(!isPlay); }} className={isPlay ? `${styled["show__overlay"]} dp-block` : `${styled["show__overlay"]} dp-none`}>
                         <div className={`abs ${styled['show__yt']}`}>

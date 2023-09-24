@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface WishlistState {
-    test: any
-    filled: boolean
+    filled: boolean,
+    saved: boolean
 }
 const initialState:WishlistState = {
-    test: [],
-    filled: false
+    filled: false,
+    saved: false
 }
 
 
@@ -16,11 +16,16 @@ export const wishlistSlice = createSlice({
     reducers: {
         toggleWishlist: (state) => {
             state.filled = !state.filled
+        },
+        toggleSave: (state) => {
+            state.saved = !state.saved
         }
     }
 })
 
 
-export const {toggleWishlist} = wishlistSlice.actions;
+export const {toggleWishlist, toggleSave} = wishlistSlice.actions;
 
 export default wishlistSlice.reducer;
+
+type WishListState = ReturnType<typeof wishlistSlice.getInitialState>;
